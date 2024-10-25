@@ -20,11 +20,11 @@
         <img src="./Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
     </div>
     <nav class="nav-links">
-        <a href="#">Home</a>
+        <a href="./index.php">Home</a>
         <a href="#">Rent</a>
         <a href="#">Cars</a>
         <a href="./aboutus.php">About Us</a>
-        <a href="#">Contact Us</a>
+        <a href="./ContactUs.php">Contact Us</a>
     </nav>
     <div class="auth-buttons">
         <button class="btn" onclick="openModal('loginModal')">Sign In</button>
@@ -257,7 +257,7 @@
     </div>
 
     <!-- FAQ items -->
-    <div class="faq-items-wrapper">
+    <div class="faq-items-wrapper" id="faq">
         <div class="faq-item">
             <div class="faq-question-wrapper">
                 <h3 class="faq-question">How do I book a rental car?</h3>
@@ -307,12 +307,12 @@
         <div class="footer-column">
             <h4>Quick Links</h4>
             <ul class="footer-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="./index.php">Home</a></li>
                 <li><a href="#">Rent</a></li>
                 <li><a href="#">Cars</a></li>
                 <li><a href="./aboutus.php">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">FAQs</a></li>
+                <li><a href="./ContactUs.php">Contact Us</a></li>
+                <li><a href="#faq">FAQs</a></li>
             </ul>
         </div>
 
