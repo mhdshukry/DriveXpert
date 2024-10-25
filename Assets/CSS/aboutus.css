@@ -1,0 +1,339 @@
+/* General styles */
+body {
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1d1d1f;
+    color: #fff;
+    padding: 10px 18px;
+    width: calc(100% - 250px);
+    box-sizing: border-box;
+    z-index: 1000;
+    position: fixed;
+    top: 15px;
+    /* Start outside of the viewport */
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70px;
+    border-radius: 45px;
+}
+
+.header .logo img {
+    height: 200px;
+    width: 200px;
+    margin-left: -20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    font-family: "Nunito", sans-serif;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 8px 15px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #db1111;
+}
+
+.nav-links a.active {
+    color: #db1111;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.auth-buttons button {
+    background-color: #ffffff;
+    color: #1d1d1f;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.auth-buttons button:hover {
+    background-color: #db1111;
+    color: #ffffff;
+}
+
+/* About Us Hero Section */
+.about-hero {
+    position: relative;
+    height: 600px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.about-hero-content {
+    z-index: 2;
+    color: #333;
+    font-family: "Oswald", sans-serif;
+}
+
+.about-hero h2 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.about-hero p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Vision Section with Car Image */
+.vision-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 50px;
+    background-color: #ffffff;
+}
+
+.vision-content {
+    z-index: 2;
+    width: 50%;
+    padding: 20px;
+    font-family: "Oswald", sans-serif;
+    text-align: left;
+}
+
+.vision-car-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 40%;
+    z-index: 1;
+}
+
+.vision-car-image img {
+    width: 100%;
+}
+
+/* Mission Section with Car Image */
+.mission-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 50px;
+    background-color: #f8f9fa;
+}
+
+.mission-content {
+    z-index: 2;
+    width: 50%;
+    padding: 20px;
+    font-family: "Oswald", sans-serif;
+    text-align: right;
+}
+
+.mission-car-image {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40%;
+    z-index: 1;
+}
+
+.mission-car-image img {
+    width: 100%;
+}
+
+/* Achievements Section */
+.achievements-section {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.achievements-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.achievement-item {
+    flex-basis: 30%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-item i {
+    font-size: 3rem;
+    color: #db1111;
+    margin-bottom: 15px;
+}
+
+.achievement-item p {
+    font-size: 1.2rem;
+    font-family: "Nunito", sans-serif;
+}
+
+/* Map Section */
+.map-section {
+    padding: 50px 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.map-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Footer Section */
+.footer-section {
+    background-color: #1d1d1f;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: left;
+    font-family: 'Nunito', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    width: 25%;
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    width: 180px;
+    margin-bottom: -70px;
+    margin-top: -30px;
+}
+
+.footer-description {
+    margin-bottom: 15px;
+    color: #bfbfbf;
+    max-width: 250px;
+}
+
+.footer-contact,
+.footer-email {
+    color: #bfbfbf;
+    font-size: 14px;
+}
+
+.footer-column h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.footer-links,
+.footer-social {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links li a {
+    color: #bfbfbf;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links li a:hover {
+    color: #db1111;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social li a {
+    color: #bfbfbf;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social li a:hover {
+    color: #db1111;
+}
+
+/* Newsletter Signup */
+.footer-newsletter-form input {
+    width: calc(100% - 100px);
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.footer-newsletter-form button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #db1111;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.footer-newsletter-form button:hover {
+    background-color: #f5c000;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: #bfbfbf;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .footer-column {
+        width: 100%;
+    }
+}
