@@ -24,8 +24,8 @@
         </div>
         <nav class="nav-links">
             <a href="./index.php">Home</a>
-            <a href="#">Rent</a>
-            <a href="#">Cars</a>
+            <a href="./rent.php">Rent</a>
+            <a href="./Cars.php">Cars</a>
             <a href="./aboutus.php">About Us</a>
             <a href="./ContactUs.php">Contact Us</a>
         </nav>
@@ -113,8 +113,8 @@
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
                     <li><a href="./index.php">Home</a></li>
-                    <li><a href="#">Rent</a></li>
-                    <li><a href="#">Cars</a></li>
+                    <li><a href="./rent.php">Rent</a></li>
+                    <li><a href="./Cars.php">Cars</a></li>
                     <li><a href="./aboutus.php">About Us</a></li>
                     <li><a href="./ContactUs.php">Contact Us</a></li>
                     <li><a href="#">FAQs</a></li>

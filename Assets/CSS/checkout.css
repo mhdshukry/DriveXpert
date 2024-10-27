@@ -77,161 +77,195 @@ body {
 }
 
 
-/* Contact Us Hero Section */
-.contact-hero {
-    position: relative;
-    height: 250px;
+/* Hero Section */
+.checkout-hero {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 250px;
     text-align: center;
-    padding-top: 80px;
     background-color: #f8f9fa;
+    padding-top: 80px;
 }
 
-.contact-hero-content {
-    color: #333;
+.checkout-hero-content h2 {
+    font-size: 3rem;
+    font-weight: bold;
     font-family: "Oswald", sans-serif;
 }
 
-.contact-hero-content .highlight {
+.checkout-hero-content .highlight {
     color: #db1111;
 }
 
-.contact-hero h2 {
-    font-size: 3rem;
-    font-weight: bold;
-}
-
-.contact-hero p {
+.checkout-hero p {
     font-size: 1.5rem;
     margin-top: 10px;
 }
 
-/* Contact Info Section */
-.contact-info-section {
+/* Checkout Section */
+.checkout-section {
     padding: 50px;
-    background-color: #ffffff;
-    text-align: center;
-    color: #333;
-    font-family: "Oswald", sans-serif;
-}
-
-.contact-info-section .highlight {
-    color: #db1111;
-}
-
-.contact-info-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.contact-info-section p {
-    font-family: "Nunito", sans-serif;
-}
-
-.contact-info-container {
-    display: flex;
-    justify-content: space-around;
     max-width: 800px;
     margin: 0 auto;
-    gap: 20px;
-}
-
-.contact-item {
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #333;
-}
-
-.contact-item i {
-    font-size: 2rem;
-    color: #db1111;
-    margin-bottom: 10px;
-}
-
-/* Contact Form Section */
-.contact-form-section {
-    padding: 50px;
-    background-color: #1d1d1f;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    color: #f8f9fa;
 }
 
-.contact-form-section h2 {
+.booking-summary {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Payment Section */
+.payment-section {
+    padding: 50px;
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.payment-section h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    font-family: "Oswald", sans-serif;
 }
 
-.contact-form-section .highlight {
-    color: #db1111;
-}
-
-.contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.form-group {
+.payment-form .form-group {
     margin-bottom: 15px;
     text-align: left;
 }
 
-.form-group label {
-    font-size: 1rem;
-    color: #f8f9fa;
+.payment-form label {
+    font-weight: bold;
     display: block;
     margin-bottom: 5px;
 }
 
-.form-group input,
-.form-group textarea {
+.payment-form input,
+.payment-form select {
     width: 100%;
     padding: 10px;
+    font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1rem;
 }
 
-.submit-btn {
-    padding: 10px 20px;
-    border-radius: 25px;
+.terms {
+    text-align: left;
+}
+
+.confirm-btn {
     background-color: #db1111;
-    color: white;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1rem;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
 }
 
-.submit-btn:hover {
-    background: none;
-    outline: 1px solid #db1111;
+.confirm-btn:hover {
+    background-color: #f5c000;
 }
 
-/* Map Section */
-.map-section {
-    padding: 50px 20px;
+/* Success Popup Modal */
+.success-popup {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease;
+    /* Fade-in effect */
+}
+
+/* Popup Content Styling */
+.popup-content {
+    background-color: #fff;
+    padding: 30px;
     text-align: center;
-    z-index: 2;
-    padding: 20px;
-    font-family: "Oswald", sans-serif;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 80%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: scaleUp 0.3s ease-in-out;
+    /* Scale-up effect */
 }
 
-.map-section .highlight {
-    color: #db1111;
-    /* Adjust the highlight color to match the theme */
+.success-icon {
+    font-size: 3rem;
+    color: #28a745;
+    margin-bottom: 10px;
 }
 
-.map-section h2 {
-    font-size: 2.5rem;
+.popup-content h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    font-size: 1rem;
+    color: #666;
     margin-bottom: 20px;
 }
 
+/* Close Button Styling */
+.close-btn {
+    background-color: #db1111;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
 
+.close-btn:hover {
+    background-color: #f5c000;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 
 
 /* Footer Section */
@@ -241,6 +275,7 @@ body {
     padding: 40px 20px;
     text-align: left;
     font-family: 'Nunito', sans-serif;
+    margin-top: 120px;
 }
 
 .footer-container {

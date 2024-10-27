@@ -76,163 +76,108 @@ body {
     color: #ffffff;
 }
 
-
-/* Contact Us Hero Section */
-.contact-hero {
-    position: relative;
-    height: 250px;
+/* Hero Section */
+.rent-hero {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 250px;
     text-align: center;
-    padding-top: 80px;
     background-color: #f8f9fa;
+    padding-top: 80px;
 }
 
-.contact-hero-content {
+.rent-hero-content {
     color: #333;
     font-family: "Oswald", sans-serif;
 }
 
-.contact-hero-content .highlight {
-    color: #db1111;
-}
-
-.contact-hero h2 {
+.rent-hero-content h2 {
     font-size: 3rem;
     font-weight: bold;
 }
 
-.contact-hero p {
+.rent-hero-content .highlight {
+    color: #db1111;
+}
+
+.rent-hero p {
     font-size: 1.5rem;
     margin-top: 10px;
 }
 
-/* Contact Info Section */
-.contact-info-section {
+/* Rent Form Section */
+.rent-form-section {
     padding: 50px;
-    background-color: #ffffff;
-    text-align: center;
-    color: #333;
-    font-family: "Oswald", sans-serif;
-}
-
-.contact-info-section .highlight {
-    color: #db1111;
-}
-
-.contact-info-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.contact-info-section p {
-    font-family: "Nunito", sans-serif;
-}
-
-.contact-info-container {
-    display: flex;
-    justify-content: space-around;
     max-width: 800px;
     margin: 0 auto;
-    gap: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.contact-item {
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #333;
-}
-
-.contact-item i {
-    font-size: 2rem;
-    color: #db1111;
-    margin-bottom: 10px;
-}
-
-/* Contact Form Section */
-.contact-form-section {
-    padding: 50px;
-    background-color: #1d1d1f;
+.rent-form-section h2 {
     text-align: center;
-    color: #f8f9fa;
-}
-
-.contact-form-section h2 {
-    font-size: 2.5rem;
     margin-bottom: 20px;
-    font-family: "Oswald", sans-serif;
-}
-
-.contact-form-section .highlight {
-    color: #db1111;
-}
-
-.contact-form {
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: 2.5rem;
 }
 
 .form-group {
     margin-bottom: 15px;
-    text-align: left;
 }
 
 .form-group label {
-    font-size: 1rem;
-    color: #f8f9fa;
     display: block;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
 .form-group input,
-.form-group textarea {
+.form-group select {
     width: 100%;
     padding: 10px;
+    font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.date-group {
+    display: flex;
+    gap: 10px;
+}
+
+.date-group span {
+    align-self: center;
+}
+
+.summary-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
     font-size: 1rem;
+    line-height: 1.6;
+}
+
+.terms {
+    text-align: left;
 }
 
 .submit-btn {
-    padding: 10px 20px;
-    border-radius: 25px;
     background-color: #db1111;
-    color: white;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1rem;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
+    display: block;
+    margin: 0 auto;
 }
 
 .submit-btn:hover {
-    background: none;
-    outline: 1px solid #db1111;
+    background-color: #f5c000;
 }
-
-/* Map Section */
-.map-section {
-    padding: 50px 20px;
-    text-align: center;
-    z-index: 2;
-    padding: 20px;
-    font-family: "Oswald", sans-serif;
-}
-
-.map-section .highlight {
-    color: #db1111;
-    /* Adjust the highlight color to match the theme */
-}
-
-.map-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-
-
 
 /* Footer Section */
 .footer-section {
@@ -241,6 +186,7 @@ body {
     padding: 40px 20px;
     text-align: left;
     font-family: 'Nunito', sans-serif;
+    margin-top: 120px;
 }
 
 .footer-container {

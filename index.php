@@ -21,8 +21,8 @@
     </div>
     <nav class="nav-links">
         <a href="./index.php">Home</a>
-        <a href="#">Rent</a>
-        <a href="#">Cars</a>
+        <a href="./rent.php">Rent</a>
+        <a href="./Cars.php">Cars</a>
         <a href="./aboutus.php">About Us</a>
         <a href="./ContactUs.php">Contact Us</a>
     </nav>
@@ -39,12 +39,12 @@
             <div class="slide active-slide">
                 <p class="tagline">The best way of renting</p>
                 <h1>Best cars to make<br>Your <span class="highlight">drive easy</span></h1>
-                <button class="hero-btn">Best Offers</button>
+                <a href="./rent.php" style="text-decoration:none"><button class="hero-btn">Best Offers</button></a>
             </div>
             <div class="slide">
                 <p class="tagline">Experience Comfort</p>
                 <h1>Premium cars for<br>Your <span class="highlight">smooth ride</span></h1>
-                <button class="hero-btn">Explore Cars</button>
+                <a href="./Cars.php" style="text-decoration:none"><button class="hero-btn">Explore Cars</button></a>
             </div>
         </div>
     </div>
@@ -187,7 +187,7 @@
         </div>
 
         <div class="car-buttons">
-            <button class="btn rent-btn">Rent Now</button>
+        <a href="./rent.php" style="text-decoration:none"><button class="btn rent-btn">Rent Now</button></a>
             <button class="btn details-btn" onclick="toggleSpecs()">Details</button>
         </div>
 
@@ -216,7 +216,7 @@
                     <span class="spec-text">$100/day</span>
                 </div>
             </div>
-            <button class="btn rent-now-btn">Rent Now</button>
+            <a href="./Cars.php" style="text-decoration:none"><button class="btn rent-now-btn">Rent Now</button></a>
         </div>
     </div>
 </section>
@@ -308,8 +308,8 @@
             <h4>Quick Links</h4>
             <ul class="footer-links">
                 <li><a href="./index.php">Home</a></li>
-                <li><a href="#">Rent</a></li>
-                <li><a href="#">Cars</a></li>
+                <li><a href="./rent.php">Rent</a></li>
+                <li><a href="./Cars.php">Cars</a></li>
                 <li><a href="./aboutus.php">About Us</a></li>
                 <li><a href="./ContactUs.php">Contact Us</a></li>
                 <li><a href="#faq">FAQs</a></li>
@@ -345,216 +345,10 @@
     </div>
 </footer>
 
-
-
-    <script>
-        // Array of car details: images, brands, models
-        const cars = [
-            {
-                image: 'Assets/Images/car5.png', // Replace with your actual image path
-                brand: 'LEXUS',
-                model: 'LC SERIES'
-            },
-            {
-                image: 'Assets/Images/car2.png', // Replace with your actual image path
-                brand: 'BMW',
-                model: 'M SERIES'
-            },
-            {
-                image: 'Assets/Images/car1.png', // Replace with your actual image path
-                brand: 'MERCEDES',
-                model: 'S CLASS'
-            },
-            {
-                image: 'Assets/Images/car4.png', // Replace with your actual image path
-                brand: 'AUDI',
-                model: 'A SERIES'
-            }
-        ];
-
-        let currentIndex = 0;
-const carImageElement = document.querySelector('.car-image1');
-const carBrandElement = document.querySelector('.car-brand');
-const carModelElement = document.querySelector('.car-model');
-
-// Function to update car information based on the current index
-function updateCarInfo(direction) {
-    const car = cars[currentIndex];
-
-    // Remove any previous animations
-    carImageElement.classList.remove('slide-in-left', 'slide-in-right', 'slide-out-left', 'slide-out-right');
-    carBrandElement.classList.remove('slide-in-vertical', 'slide-out-vertical');
-    carModelElement.classList.remove('slide-in-vertical', 'slide-out-vertical');
-
-    // Add exit animations based on direction
-    if (direction === 'next') {
-        carImageElement.classList.add('slide-out-left');
-    } else if (direction === 'prev') {
-        carImageElement.classList.add('slide-out-right');
-    }
-    carBrandElement.classList.add('slide-out-vertical');
-    carModelElement.classList.add('slide-out-vertical');
-
-    setTimeout(() => {
-        // Update the car information
-        carImageElement.src = car.image;
-        carBrandElement.textContent = car.brand;
-        carModelElement.textContent = car.model;
-
-        // Remove exit animations
-        carImageElement.classList.remove('slide-out-left', 'slide-out-right');
-        carBrandElement.classList.remove('slide-out-vertical');
-        carModelElement.classList.remove('slide-out-vertical');
-
-        // Add entry animations based on direction
-        if (direction === 'next') {
-            carImageElement.classList.add('slide-in-right');
-        } else if (direction === 'prev') {
-            carImageElement.classList.add('slide-in-left');
-        }
-        carBrandElement.classList.add('slide-in-vertical');
-        carModelElement.classList.add('slide-in-vertical');
-    }, 800); // Wait for the exit animation to complete
-}
-
-// Event listeners for next and previous buttons
-document.querySelector('.slider-next').addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % cars.length; // Go to the next car, loop if at the end
-    updateCarInfo('next');
-});
-
-document.querySelector('.slider-prev').addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + cars.length) % cars.length; // Go to the previous car, loop if at the beginning
-    updateCarInfo('prev');
-});
-
-
-</script>
-
-
-
-
-<script>
-   let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.remove('active-slide');
-        slide.style.opacity = 0;  // Start hiding the previous slide
-        if (i === index) {
-            slide.classList.add('active-slide');
-            setTimeout(() => {
-                slide.style.opacity = 1;  // Fade in the new slide
-            }, 50);  // Small delay for smooth transition
-        }
-    });
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-setInterval(nextSlide, 10000); // 10 seconds interval
-
-</script>
-
-
-<script>
-// Auto count up numbers when the section is in view
-const counters = document.querySelectorAll('.stat-number');
-const speed = 75; // The higher the number, the slower the count
-
-counters.forEach(counter => {
-    const updateCount = () => {
-        const target = +counter.getAttribute('data-target'); // Get the target number
-        const count = +counter.innerText;
-        const format = counter.getAttribute('data-target-format'); // Get the format (K or +)
-        
-        // Calculate the increment
-        const increment = target / speed;
-
-        // If the current count is less than the target, increment the count
-        if (count < target) {
-            counter.innerText = Math.ceil(count + increment);
-            setTimeout(updateCount, 20);
-        } else {
-            // Format the final number with "K" or "+"
-            let finalCount = target;
-            if (target >= 1000) {
-                finalCount = (target / 1000).toFixed(1) + 'K'; // Format as 1K, 2K, etc.
-            }
-
-            // Add "+" if required
-            if (format === '+') {
-                finalCount += '+';
-            }
-
-            counter.innerText = finalCount; // Display the formatted final number
-        }
-    };
-
-    // Trigger the count when the section is in view
-    const triggerCounting = () => {
-        const sectionPosition = document.querySelector('.stats-section').getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
-        
-        if (sectionPosition < screenPosition) {
-            updateCount();
-            window.removeEventListener('scroll', triggerCounting); // Remove event listener once counting starts
-        }
-    };
-
-    window.addEventListener('scroll', triggerCounting);
-});
-
-</script>
-
-<script>
-    document.querySelectorAll('.faq-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-        const faqItem = button.parentElement.parentElement;
-
-        // Hide all other FAQ answers first
-        document.querySelectorAll('.faq-item').forEach(item => {
-            if (item !== faqItem) {
-                item.classList.remove('active');
-                item.querySelector('.faq-toggle').textContent = '+'; // Reset button to '+'
-            }
-        });
-
-        // Toggle the clicked FAQ item
-        faqItem.classList.toggle('active');
-
-        // Change button text based on whether FAQ is active
-        if (faqItem.classList.contains('active')) {
-            button.textContent = '-'; // Show '-' if active
-        } else {
-            button.textContent = '+'; // Revert back to '+' if not active
-        }
-    });
-});
-
-</script>
-
-<script>
-function toggleSpecs() {
-    const specs = document.getElementById("carSpecs");
-
-    if (specs.classList.contains('visible')) {
-        specs.classList.remove('visible');
-        setTimeout(() => {
-            specs.style.display = 'none'; // Ensures display none after fade out
-        }, 500); // Matches the transition duration
-    } else {
-        specs.style.display = 'block'; // Immediately set display block for smooth fade in
-        setTimeout(() => specs.classList.add('visible'), 10); // Slight delay for transition
-    }
-}
-
-
-
-</script>
+<script src="./Assets/JS/Auto_Count.js"></script>
+<script src="./Assets/JS/Faq.js"></script>
+<script src="./Assets/JS/Cars.js"></script>
+<script src="./Assets/JS/Slider.js"></script>
+<script src="./Assets/JS/details.js"></script>
 </body>
 </html>

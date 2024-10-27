@@ -21,8 +21,8 @@
         </div>
         <nav class="nav-links">
             <a href="./index.php">Home</a>
-            <a href="#">Rent</a>
-            <a href="#">Cars</a>
+            <a href="./rent.php">Rent</a>
+            <a href="./Cars.php">Cars</a>
             <a href="./aboutus.php">About Us</a>
             <a href="./ContactUs.php">Contact Us</a>
         </nav>
@@ -47,7 +47,7 @@
         <div class="contact-info-container">
             <div class="contact-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <p>123 DriveXpert Street, City, Country</p>
+                <p>123 DriveXpert Street, Colombo, Sri Lanka</p>
             </div>
             <div class="contact-item">
                 <i class="fas fa-phone-alt"></i>
@@ -102,11 +102,11 @@
             <div class="footer-column">
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Rent</a></li>
-                    <li><a href="#">Cars</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="./index.php">Home</a></li>
+                    <li><a href="./rent.php">Rent</a></li>
+                    <li><a href="./Cars.php">Cars</a></li>
+                    <li><a href="./aboutus.php">About Us</a></li>
+                    <li><a href="./ContactUs.php">Contact Us</a></li>
                     <li><a href="#">FAQs</a></li>
                 </ul>
             </div>
