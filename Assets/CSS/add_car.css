@@ -1,0 +1,57 @@
+/* General Form Styling */
+.main-content h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.add-car-form .form-group {
+    margin-bottom: 15px;
+}
+
+.add-car-form label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.add-car-form input[type="text"],
+.add-car-form input[type="number"],
+.add-car-form input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.add-car-form input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 5px;
+}
+
+.add-car-form .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #db1111;
+    color: #fff;
+    border: none;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-car-form .submit-btn:hover {
+    background-color: #b50e0e;
+}

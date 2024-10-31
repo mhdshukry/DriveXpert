@@ -27,8 +27,8 @@
         <a href="./ContactUs.php">Contact Us</a>
     </nav>
     <div class="auth-buttons">
-        <button class="btn" onclick="window.location.href='./auth.php?action=signin'">Sign In</button>
-        <button class="btn" onclick="window.location.href='./auth.php?action=signup'">Sign Up</button>
+        <button class="btn" onclick="openModal('loginModal')">Sign In</button>
+        <button class="btn" onclick="openModal('signupModal')">Sign Up</button>
     </div>
 </header>
 
@@ -312,7 +312,7 @@
                 <li><a href="./Cars.php">Cars</a></li>
                 <li><a href="./aboutus.php">About Us</a></li>
                 <li><a href="./ContactUs.php">Contact Us</a></li>
-                <li><a href="./Admin/Admin_dashboard.php">FAQs</a></li>
+                <li><a href="#faq">FAQs</a></li>
             </ul>
         </div>
 
