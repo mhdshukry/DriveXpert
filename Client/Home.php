@@ -25,7 +25,7 @@ session_start();
         <img src="../Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
     </div>
     <nav class="nav-links">
-        <a href="./index.php">Home</a>
+        <a href="./home.php">Home</a>
         <a href="./Rent.php">Rent</a>
         <a href="./Cars.php">Cars</a>
         <a href="./aboutus.php">About Us</a>
