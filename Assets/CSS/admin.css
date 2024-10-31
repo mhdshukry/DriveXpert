@@ -126,42 +126,42 @@ h1 {
     background-color: #f5c000;
 }
 
-.card-container {
-    display: flex;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.card {
-    background-color: #db1111;
-    color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 30%;
-}
-
-/* Chart Grid */
+/* Chart Grid - Three Columns in One Row */
 .chart-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    /* Each chart in one column, single row */
     gap: 20px;
-    margin-top: 30px;
+    margin-top: 20px;
+    width: 100%;
+    justify-items: center;
 }
 
+/* Compact Chart Container Styling */
 .chart-container {
-    background-color: #f8f9fa;
+    width: 100%;
+    max-width: 350px;
+    /* Sets max width for each chart */
+    height: 300px;
+    background-color: #fefefe;
     border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    text-align: center;
 }
 
 .chart-container h3 {
-    font-size: 1.2rem;
-    text-align: center;
+    font-size: 1rem;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
+
+
+
+
+
 
 .footer-bottom {
     padding-top: 20px;
@@ -259,3 +259,45 @@ h1 {
     background-color: #ff5733;
 }
 
+/* Dropdown container */
+.dropdown {
+    margin-top: 7px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown menu toggle */
+.dropdown-toggle {
+    color: #db1111;
+    text-decoration: none;
+    padding: 10px;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #1d1d1f;
+    min-width: 150px;
+    border-radius: 5px;
+    padding: 10px 0;
+    margin-left: -30px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown menu links */
+.dropdown-menu a {
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+    color: #db1111;
+}

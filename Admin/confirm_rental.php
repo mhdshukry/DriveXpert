@@ -1,31 +1,72 @@
 <?php
 include '../config.php';
 
-// Confirm rental if action is "confirm"
 if (isset($_GET['action']) && $_GET['action'] === 'confirm' && isset($_GET['id'])) {
     $rental_id = $_GET['id'];
 
-    // Update rental status to 'confirmed' and set car availability to not available (0)
-    $conn->query("UPDATE rentals SET status = 'confirmed' WHERE rental_id = $rental_id");
-    $conn->query("UPDATE cars SET availability = 0 WHERE car_id = (SELECT car_id FROM rentals WHERE rental_id = $rental_id)");
+    // Confirm the rental and update car availability
+    $conn->query("UPDATE rentals SET status = 'confirmed' WHERE rental_id = $rental_id") or die($conn->error);
+    $conn->query("UPDATE cars SET availability = 0 WHERE car_id = (SELECT car_id FROM rentals WHERE rental_id = $rental_id)") or die($conn->error);
 
-    // Insert customer rental details into the customers table
-    $customerQuery = "
-        UPDATE customers c
-        JOIN rentals r ON c.customer_id = r.user_id
-        JOIN cars car ON r.car_id = car.car_id
-        SET c.rental_id = r.rental_id, 
-            c.car_model = car.model, 
-            c.brand = car.brand, 
-            c.date_from = r.date_from, 
-            c.date_to = r.date_to, 
-            c.total_fees = r.total_cost
+    // Temporarily store customer rental details in customers table
+    $tempCustomerQuery = "
+        INSERT INTO customers (customer_id, name, email, phone, rental_id, car_model, brand, date_from, date_to, total_fees)
+        SELECT u.user_id, u.name, u.email, u.phone, r.rental_id, c.model, c.brand, r.date_from, r.date_to, r.total_cost
+        FROM rentals r
+        JOIN users u ON r.user_id = u.user_id
+        JOIN cars c ON r.car_id = c.car_id
         WHERE r.rental_id = $rental_id
+        ON DUPLICATE KEY UPDATE 
+            car_model = VALUES(car_model), brand = VALUES(brand), date_from = VALUES(date_from), date_to = VALUES(date_to), total_fees = VALUES(total_fees)
     ";
-    $conn->query($customerQuery);
+    $conn->query($tempCustomerQuery) or die($conn->error);
 }
 
-// Query to get confirmed rentals
+if (isset($_GET['action']) && $_GET['action'] === 'complete' && isset($_GET['rental_id']) && isset($_GET['car_id'])) {
+    $rental_id = $_GET['rental_id'];
+    $car_id = $_GET['car_id'];
+
+    // Fetch rental details for history insertion
+    $rentalDetails = $conn->query("
+        SELECT r.rental_id, u.user_id AS customer_id, r.date_from, r.date_to, r.total_cost, c.model AS car_model, 
+               c.brand AS car_brand, c.seat_count, c.max_speed, c.km_per_liter
+        FROM rentals r
+        JOIN users u ON r.user_id = u.user_id
+        JOIN cars c ON r.car_id = c.car_id
+        WHERE r.rental_id = $rental_id
+    ")->fetch_assoc();
+
+    // Calculate total fines for the rental
+    $fineResult = $conn->query("SELECT SUM(amount) AS total_fine FROM fines WHERE rental_id = $rental_id");
+    $totalFine = $fineResult->fetch_assoc()['total_fine'] ?? 0;
+
+    // Calculate total fees including fines
+    $totalFeesWithFines = $rentalDetails['total_cost'] + $totalFine;
+
+    // Insert completed rental into rental_history
+    $conn->query("
+        INSERT INTO rental_history (rental_id, customer_id, date_from, date_to, total_fees, car_model, car_brand, 
+                                    seat_count, max_speed, km_per_liter, fine_details, created_at)
+        VALUES (
+            {$rentalDetails['rental_id']}, {$rentalDetails['customer_id']}, '{$rentalDetails['date_from']}', 
+            '{$rentalDetails['date_to']}', $totalFeesWithFines, '{$rentalDetails['car_model']}', 
+            '{$rentalDetails['car_brand']}', {$rentalDetails['seat_count']}, {$rentalDetails['max_speed']}, 
+            {$rentalDetails['km_per_liter']}, 'Total Fine: $$totalFine', NOW()
+        )
+    ");
+
+    // Complete the rental and reset car availability
+    $conn->query("UPDATE rentals SET status = 'completed' WHERE rental_id = $rental_id") or die($conn->error);
+    $conn->query("UPDATE cars SET availability = 1 WHERE car_id = $car_id") or die($conn->error);
+
+    // Remove temporary data in customers table for this rental
+    $conn->query("DELETE FROM customers WHERE rental_id = $rental_id") or die($conn->error);
+
+    header("Location: confirm_rental.php");
+    exit();
+}
+
+// Display confirmed rentals
 $rentalQuery = "SELECT rentals.rental_id, users.name AS customer, cars.model AS car, 
                 rentals.date_from, rentals.date_to, rentals.status, rentals.car_id
                 FROM rentals 
@@ -44,14 +85,20 @@ $rentalResult = $conn->query($rentalQuery);
     <link rel="stylesheet" href="../Assets/CSS/admin.css">
 </head>
 <body>
-
 <header class="header">
     <div class="logo">
         <img src="../Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
     </div>
     <nav class="nav-links">
-        <a href="admin_dashboard.php">Dashboard</a>
-        <a href="manage_rentals.php">Rentals</a>
+        <a href="admin_dashboard.php" class="active">Dashboard</a>
+        <div class="dropdown">
+            <a class="dropdown-toggle">Rentals</a>
+            <div class="dropdown-menu">
+                <a href="confirm_rental.php">Confirm Rental</a>
+                <a href="rental_history.php">Rental History</a>
+                <a href="manage_rentals.php">Manage Rental</a>
+            </div>
+        </div>
         <a href="manage_customers.php">Customers</a>
         <a href="manage_cars.php">Cars</a>
         <a href="manage_fines.php">Fines</a>
@@ -61,7 +108,6 @@ $rentalResult = $conn->query($rentalQuery);
         <button class="btn logout-btn" onclick="window.location.href='logout.php'">Logout</button>
     </div>
 </header>
-
 <main class="main-content">
     <h1>Confirmed Rentals</h1>
     <div class="table-container">
@@ -103,44 +149,11 @@ function completeRental(rentalId, carId) {
 }
 
 function applyFine(rentalId) {
-    let fineAmount = prompt("Enter fine amount:");
-    if (fineAmount) {
-        window.location.href = `confirm_rental.php?action=fine&rental_id=${rentalId}&amount=${fineAmount}`;
-    }
+    window.location.href = `fine.php?rental_id=${rentalId}`;
 }
 </script>
 
 </body>
 </html>
 
-<?php
-// Handle completion and fine actions
-if (isset($_GET['action'])) {
-    $rental_id = $_GET['rental_id'] ?? null;
-    $car_id = $_GET['car_id'] ?? null;
-
-    // Complete the rental
-    if ($_GET['action'] === 'complete' && $rental_id && $car_id) {
-        $conn->query("UPDATE rentals SET status = 'completed' WHERE rental_id = $rental_id");
-        $conn->query("UPDATE cars SET availability = 1 WHERE car_id = $car_id");
-
-        // Reset rental-related fields in `customers` table
-        $conn->query("UPDATE customers SET rental_id = NULL, car_model = NULL, brand = NULL, date_from = NULL, date_to = NULL, total_fees = 0 WHERE rental_id = $rental_id");
-
-        header("Location: confirm_rental.php");
-        exit();
-    }
-
-    // Apply fine
-    if ($_GET['action'] === 'fine' && $rental_id && isset($_GET['amount'])) {
-        $amount = $_GET['amount'];
-        $conn->query("INSERT INTO fines (rental_id, amount, date_applied) VALUES ($rental_id, $amount, NOW())");
-
-        // Update total fees in `customers` table to reflect the fine
-        $conn->query("UPDATE customers SET total_fees = total_fees + $amount WHERE rental_id = $rental_id");
-
-        header("Location: confirm_rental.php");
-        exit();
-    }
-}
-$conn->close();
+<?php $conn->close(); ?>

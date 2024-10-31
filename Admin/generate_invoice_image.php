@@ -14,9 +14,16 @@ if (isset($_GET['history_id'])) {
     $result = $conn->query($query);
     $data = $result->fetch_assoc();
 
-    // Create a blank image with a white background
+    // Calculate rental days
+    $daysRented = (strtotime($data['date_to']) - strtotime($data['date_from'])) / 86400 + 1;
+    $perDayCost = $data['total_fees'] / $daysRented;
+
+    // Fine details (parse fine details to array if stored as JSON)
+    $fines = json_decode($data['fine_details'], true) ?: [];
+
+    // Create a blank image
     $width = 800;
-    $height = 1200;
+    $height = 1600;
     $image = imagecreatetruecolor($width, $height);
     $background = imagecolorallocate($image, 255, 255, 255);
     imagefilledrectangle($image, 0, 0, $width, $height, $background);
@@ -24,77 +31,64 @@ if (isset($_GET['history_id'])) {
     // Define colors
     $textColor = imagecolorallocate($image, 0, 0, 0);
     $blue = imagecolorallocate($image, 41, 128, 185);
+    $borderColor = imagecolorallocate($image, 200, 200, 200);
 
-    // Set up fonts (replace with path to your TTF fonts)
+    // Set up font path
     $fontPath = './arial.ttf';
 
-    // Add company logo
-    $logoPath = '../Assets/Images/DriveXpert.png';
-    if (file_exists($logoPath)) {
-        $logo = imagecreatefrompng($logoPath);
-        imagecopyresized($image, $logo, 20, 20, 0, 0, 100, 50, imagesx($logo), imagesy($logo));
-        imagedestroy($logo);
-    }
+    // Header
+    imagettftext($image, 20, 0, 200, 50, $textColor, $fontPath, 'DriveXpert Rental Company');
+    imagettftext($image, 12, 0, 20, 120, $textColor, $fontPath, '1234 Elm Street, Suite 567, City Name');
+    imagettftext($image, 12, 0, 20, 145, $textColor, $fontPath, 'Phone: +123 456 7890 | Email: info@drivexpert.com');
+    imagettftext($image, 18, 0, 300, 200, $blue, $fontPath, 'Rental Invoice');
 
-    // Company Information
-    imagettftext($image, 20, 0, 150, 50, $textColor, $fontPath, 'DriveXpert Rental Company');
-    imagettftext($image, 12, 0, 20, 100, $textColor, $fontPath, '1234 Elm Street, Suite 567, City Name');
-    imagettftext($image, 12, 0, 20, 130, $textColor, $fontPath, 'Phone: +123 456 7890 | Email: info@drivexpert.com');
-
-    // Invoice Title
-    imagettftext($image, 18, 0, 300, 180, $blue, $fontPath, 'Rental Invoice');
-
-    // Customer and Rental Information Table
-    imagettftext($image, 14, 0, 20, 220, $textColor, $fontPath, 'Invoice Details');
     $startY = 250;
-    $lineHeight = 30;
+    $lineHeight = 40;
 
-    // Table content
-    $tableData = [
-        ['Rental ID:', $data['rental_id'], 'Rental Period:', $data['date_from'] . ' to ' . $data['date_to']],
-        ['Customer Name:', $data['customer_name'], 'Email:', $data['customer_email']],
-        ['Phone:', $data['customer_phone'], 'Total Fees:', '$' . number_format($data['total_fees'], 2)],
+    // Draw Customer Information Table
+    imagettftext($image, 14, 0, 20, $startY, $blue, $fontPath, 'Customer Information');
+    $startY += 30;
+    $customerData = [
+        ['Customer Name', $data['customer_name']],
+        ['Email', $data['customer_email']],
+        ['Phone', $data['customer_phone']]
     ];
+    drawTable($image, $customerData, $startY, $width, $lineHeight, $borderColor, $textColor, $fontPath);
+    $startY += count($customerData) * $lineHeight + 10;
 
-    foreach ($tableData as $row) {
-        imagettftext($image, 12, 0, 40, $startY, $textColor, $fontPath, $row[0]);
-        imagettftext($image, 12, 0, 200, $startY, $textColor, $fontPath, $row[1]);
-        imagettftext($image, 12, 0, 400, $startY, $textColor, $fontPath, $row[2]);
-        imagettftext($image, 12, 0, 600, $startY, $textColor, $fontPath, $row[3]);
-        $startY += $lineHeight;
-    }
-
-    // Car Details
-    imagettftext($image, 14, 0, 20, $startY + 30, $blue, $fontPath, 'Car Details');
+    // Draw Car Details Table
+    imagettftext($image, 14, 0, 20, $startY, $blue, $fontPath, 'Car Information');
+    $startY += 30;
     $carData = [
-        ['Brand:', $data['car_brand'], 'Model:', $data['car_model']],
-        ['Seats:', $data['seat_count'], 'Max Speed:', $data['max_speed'] . ' km/h'],
-        ['Efficiency:', $data['km_per_liter'] . ' km/l', '', '']
+        ['Brand', $data['car_brand']],
+        ['Model', $data['car_model']],
+        ['Seats', $data['seat_count']],
+        ['Max Speed', $data['max_speed'] . ' km/h'],
+        ['Efficiency', $data['km_per_liter'] . ' km/l']
+    ];
+    drawTable($image, $carData, $startY, $width, $lineHeight, $borderColor, $textColor, $fontPath);
+    $startY += count($carData) * $lineHeight + 10;
+
+    // Draw Pricing Table
+    imagettftext($image, 14, 0, 20, $startY, $blue, $fontPath, 'Pricing Details');
+    $startY += 30;
+    $priceData = [
+        ['Per Day Cost', '$' . number_format($perDayCost, 2)],
+        ['Rented Cost', '$' . number_format($data['total_fees'], 2)]
     ];
 
-    $startY += 60;
-    foreach ($carData as $row) {
-        imagettftext($image, 12, 0, 40, $startY, $textColor, $fontPath, $row[0]);
-        imagettftext($image, 12, 0, 200, $startY, $textColor, $fontPath, $row[1]);
-        imagettftext($image, 12, 0, 400, $startY, $textColor, $fontPath, $row[2]);
-        imagettftext($image, 12, 0, 600, $startY, $textColor, $fontPath, $row[3]);
-        $startY += $lineHeight;
+    // Add each fine
+    foreach ($fines as $reason => $fine) {
+        $priceData[] = ["Fine for $reason", '$' . number_format($fine, 2)];
     }
 
-    // Fine and Additional Options
-    if (!empty($data['fine_details'])) {
-        imagettftext($image, 14, 0, 20, $startY + 30, $blue, $fontPath, 'Fine Details');
-        imagettftext($image, 12, 0, 40, $startY + 60, $textColor, $fontPath, $data['fine_details']);
-        $startY += 90;
-    }
+    // Add total row
+    $totalFine = array_sum($fines);
+    $totalCost = $data['total_fees'] + $totalFine;
+    $priceData[] = ['Total Fee', '$' . number_format($totalCost, 2)];
+    drawTable($image, $priceData, $startY, $width, $lineHeight, $borderColor, $textColor, $fontPath);
 
-    if (!empty($data['additional_options'])) {
-        imagettftext($image, 14, 0, 20, $startY, $blue, $fontPath, 'Additional Options');
-        imagettftext($image, 12, 0, 40, $startY + 30, $textColor, $fontPath, $data['additional_options']);
-        $startY += 60;
-    }
-
-    // Signature section
+    // Signature section with lines
     $signY = $height - 100;
     imagettftext($image, 12, 0, 40, $signY, $textColor, $fontPath, 'Director Signature: ____________________');
     imagettftext($image, 12, 0, 300, $signY, $textColor, $fontPath, 'Manager Signature: ____________________');
@@ -108,5 +102,17 @@ if (isset($_GET['history_id'])) {
     header('Content-Disposition: attachment; filename="rental_invoice_' . $data['rental_id'] . '.jpg"');
     imagejpeg($image);
     imagedestroy($image);
+}
+
+// Function to draw a bordered table
+function drawTable($image, $data, $startY, $width, $lineHeight, $borderColor, $textColor, $fontPath) {
+    $colX = [40, 200, 400, 600]; // Column start points
+    $tableWidth = $width - 40;
+    foreach ($data as $row) {
+        imagerectangle($image, $colX[0] - 10, $startY - $lineHeight + 10, $tableWidth, $startY, $borderColor);
+        imagettftext($image, 12, 0, $colX[0], $startY, $textColor, $fontPath, $row[0]);
+        imagettftext($image, 12, 0, $colX[2], $startY, $textColor, $fontPath, $row[1]);
+        $startY += $lineHeight;
+    }
 }
 ?>

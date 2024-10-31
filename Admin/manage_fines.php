@@ -1,19 +1,12 @@
 <?php
 include '../config.php';
 
-// Process fine application form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_fine'])) {
-    $customer_id = $_POST['customer_id'];
-    $amount = $_POST['amount'];
-    $reason = $_POST['reason'];
-
-    // Insert fine record into fines table
-    $conn->query("INSERT INTO fines (customer_id, amount, reason) VALUES ($customer_id, $amount, '$reason')");
-    header("Location: manage_fines.php");
+// Process fine deletion
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_fine'])) {
+    $fine_id = $_POST['fine_id'];
+    $conn->query("DELETE FROM fines WHERE fine_id = $fine_id");
+    header("Location: manage_fines.php"); // Refresh to reflect deletion
 }
-
-// Fetch customers for the dropdown selection in the fine application form
-$customersResult = $conn->query("SELECT customer_id, name FROM customers");
 
 // Fetch all fines for displaying fine history
 $finesResult = $conn->query("SELECT fines.fine_id, customers.name AS customer_name, fines.amount, fines.reason, fines.date_applied 
@@ -37,11 +30,19 @@ $finesResult = $conn->query("SELECT fines.fine_id, customers.name AS customer_na
         <img src="../Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
     </div>
     <nav class="nav-links">
-        <a href="admin_dashboard.php">Dashboard</a>
-        <a href="manage_rentals.php">Rentals</a>
+        <a href="admin_dashboard.php" class="active">Dashboard</a>
+        <!-- Rentals Dropdown -->
+        <div class="dropdown">
+            <a class="dropdown-toggle">Rentals</a>
+            <div class="dropdown-menu">
+                <a href="confirm_rental.php">Confirm Rental</a>
+                <a href="rental_history.php">Rental History</a>
+                <a href="manage_rentals.php">Manage Rental</a>
+            </div>
+        </div>
         <a href="manage_customers.php">Customers</a>
         <a href="manage_cars.php">Cars</a>
-        <a href="manage_fines.php" class="active">Fines</a>
+        <a href="manage_fines.php">Fines</a>
         <a href="reports.php">Reports</a>
     </nav>
     <div class="auth-buttons">
@@ -51,31 +52,6 @@ $finesResult = $conn->query("SELECT fines.fine_id, customers.name AS customer_na
 
 <main class="main-content">
     <h1>Manage Fines</h1>
-
-    <!-- Apply Fine Section -->
-    <section class="apply-fine-section">
-        <h2>Apply Fine</h2>
-        <form method="post" class="apply-fine-form">
-            <div class="form-group">
-                <label for="customer_id">Select Customer</label>
-                <select name="customer_id" id="customer_id" required>
-                    <option value="">Choose a Customer</option>
-                    <?php while ($customer = $customersResult->fetch_assoc()) { ?>
-                        <option value="<?= $customer['customer_id'] ?>"><?= $customer['name'] ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="amount">Fine Amount</label>
-                <input type="number" name="amount" id="amount" step="0.01" required>
-            </div>
-            <div class="form-group">
-                <label for="reason">Reason</label>
-                <textarea name="reason" id="reason" rows="3" required></textarea>
-            </div>
-            <button type="submit" name="apply_fine" class="btn">Apply Fine</button>
-        </form>
-    </section>
 
     <!-- Fine History Section -->
     <section class="fine-history-section">
@@ -89,6 +65,7 @@ $finesResult = $conn->query("SELECT fines.fine_id, customers.name AS customer_na
                         <th>Amount</th>
                         <th>Reason</th>
                         <th>Date Applied</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -99,6 +76,13 @@ $finesResult = $conn->query("SELECT fines.fine_id, customers.name AS customer_na
                             <td>$<?= number_format($fine['amount'], 2) ?></td>
                             <td><?= $fine['reason'] ?></td>
                             <td><?= $fine['date_applied'] ?></td>
+                            <td>
+                                <!-- Delete Fine Button -->
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="fine_id" value="<?= $fine['fine_id'] ?>">
+                                    <button type="submit" name="delete_fine" class="btn1">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>

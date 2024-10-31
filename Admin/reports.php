@@ -70,10 +70,20 @@ if (isset($_GET['export'])) {
         <img src="../Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
     </div>
     <nav class="nav-links">
-        <a href="admin_dashboard.php">Dashboard</a>
-        <a href="manage_rentals.php">Rentals</a>
+        <a href="admin_dashboard.php" class="active">Dashboard</a>
+        
+        <!-- Rentals Dropdown -->
+        <div class="dropdown">
+            <a class="dropdown-toggle">Rentals</a>
+            <div class="dropdown-menu">
+                <a href="confirm_rental.php">Confirm Rental</a>
+                <a href="rental_history.php">Rental History</a>
+                <a href="manage_rentals.php">Manage Rental</a>
+            </div>
+        </div>
+        
         <a href="manage_customers.php">Customers</a>
-        <a href="manage_cars.php" class="active">Cars</a>
+        <a href="manage_cars.php">Cars</a>
         <a href="manage_fines.php">Fines</a>
         <a href="reports.php">Reports</a>
     </nav>
