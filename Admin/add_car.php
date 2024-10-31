@@ -15,14 +15,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $logo_picture = $_FILES['logo_picture']['name'];
     $car_picture = $_FILES['car_picture']['name'];
 
-    // Move uploaded images to a dedicated directory (e.g., "uploads")
+    // Define the target directory for uploads
     $target_dir = "../Assets/Images/uploads/";
+
+    // Move uploaded files and store relative paths
+    $logo_path = "Assets/Images/uploads/" . $logo_picture;
+    $car_path = "Assets/Images/uploads/" . $car_picture;
     move_uploaded_file($_FILES['logo_picture']['tmp_name'], $target_dir . $logo_picture);
     move_uploaded_file($_FILES['car_picture']['tmp_name'], $target_dir . $car_picture);
 
-    // Insert data into the database
+    // Insert data into the database with paths only
     $stmt = $conn->prepare("INSERT INTO cars (brand, model, seat_count, max_speed, km_per_liter, rent_per_day, availability, logo_picture, car_picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssiiidiss", $brand, $model, $seat_count, $max_speed, $km_per_liter, $rent_per_day, $availability, $logo_picture, $car_picture);
+    $stmt->bind_param("ssiiidiss", $brand, $model, $seat_count, $max_speed, $km_per_liter, $rent_per_day, $availability, $logo_path, $car_path);
 
     if ($stmt->execute()) {
         echo "<script>alert('Car added successfully!'); window.location.href='manage_cars.php';</script>";
@@ -33,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

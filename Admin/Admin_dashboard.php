@@ -135,27 +135,27 @@ foreach ($monthlyRevenue as $month => $revenue) {
         <div class="card"><h3>Active Customers</h3><p><?php echo $activeCustomers; ?></p></div>
     </div>
 
-    <!-- Car Availability Section -->
     <section>
-        <h2 class="section-heading">Available Cars</h2>
-        <div class="car-gallery">
-            <?php
-            $carQuery = "SELECT model, brand, availability, car_picture FROM cars LIMIT 6"; // Fetch a few car details
-            $carResult = $conn->query($carQuery);
-            while ($car = $carResult->fetch_assoc()) {
-                echo "
-                <div class='car-card'>
-                    <img src='../Assets/Images/{$car['car_picture']}' alt='{$car['model']}'>
-                    <div class='car-card-details'>
-                        <h4>{$car['brand']} {$car['model']}</h4>
-                        <p>Availability: " . ($car['availability'] ? "Available" : "Rented") . "</p>
-                        <button class='btn1'>View Details</button>
-                    </div>
-                </div>";
-            }
-            ?>
-        </div>
-    </section>
+    <h2 class="section-heading">Available Cars</h2>
+    <div class="car-gallery">
+        <?php
+        $carQuery = "SELECT model, brand, availability, car_picture FROM cars LIMIT 6"; // Fetch a few car details
+        $carResult = $conn->query($carQuery);
+        while ($car = $carResult->fetch_assoc()) {
+            echo "
+            <div class='car-card'>
+                <img src='../{$car['car_picture']}' alt='{$car['model']}'>
+                <div class='car-card-details'>
+                    <h4>{$car['brand']} {$car['model']}</h4>
+                    <p>Availability: " . ($car['availability'] ? "Available" : "Rented") . "</p>
+                    <button class='btn1'>View Details</button>
+                </div>
+            </div>";
+        }
+        ?>
+    </div>
+</section>
+
 
     <!-- Rental Details Section -->
     <section>
