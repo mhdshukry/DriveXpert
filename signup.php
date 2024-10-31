@@ -1,6 +1,6 @@
 <?php
 // Database connection
-include 'db_connect.php';
+include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,30 +9,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriveXpert</title>
-    <link rel="stylesheet" href="./Assets/CSS/cars.css">
+    <link rel="stylesheet" href="../Assets/CSS/cars.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playwrite+AR:wght@100..400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Sofia&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 <header class="header">
     <div class="logo">
-        <img src="./Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
+        <img src="../Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
     </div>
     <nav class="nav-links">
         <a href="./Home.php">Home</a>
-        <a href="./rent.php">Rent</a>
+        <a href="./Rent.php">Rent</a>
         <a href="./Cars.php">Cars</a>
         <a href="./aboutus.php">About Us</a>
         <a href="./ContactUs.php">Contact Us</a>
     </nav>
     <div class="auth-buttons">
-        <button class="btn" onclick="openModal('loginModal')">Sign In</button>
-        <button class="btn" onclick="openModal('signupModal')">Sign Up</button>
+        <button class="btn logout-btn" onclick="window.location.href='logout.php'">Logout</button>
     </div>
 </header>
 
@@ -45,7 +47,7 @@
         </div>
 
         <div class="car-image-container">
-            <img src="Assets/Images/car5.png" alt="Car Image" class="car-image1">
+            <img src="../Assets/Images/car5.png" alt="Car Image" class="car-image1">
         </div>
 
         <div class="slider-controls">
@@ -63,23 +65,23 @@
             <button class="close-btn" onclick="toggleSpecs()">X</button>
             <div class="car-specs">
                 <div class="spec-item">
-                    <img src="Assets/images/lexus.png" alt="Logo" class="spec-icon">
+                    <img src="../Assets/Images/lexus.png" alt="Logo" class="spec-icon">
                     <span class="spec-text">Lexus</span>
                 </div>
                 <div class="spec-item">
-                    <img src="Assets/images/seat.png" alt="Seat Capacity" class="spec-icon">
+                    <img src="../Assets/Images/seat.png" alt="Seat Capacity" class="spec-icon">
                     <span class="spec-text">4 Seats</span>
                 </div>
                 <div class="spec-item">
-                    <img src="Assets/images/speed.png" alt="Max Speed" class="spec-icon">
+                    <img src="../Assets/Images/speed.png" alt="Max Speed" class="spec-icon">
                     <span class="spec-text">250 Km/h</span>
                 </div>
                 <div class="spec-item">
-                    <img src="Assets/images/fuel.png" alt="Litter/Km" class="spec-icon">
+                    <img src="../Assets/Images/fuel.png" alt="Litter/Km" class="spec-icon">
                     <span class="spec-text">1L/10km</span>
                 </div>
                 <div class="spec-item">
-                    <img src="Assets/images/price.png" alt="Price/Day" class="spec-icon">
+                    <img src="../Assets/Images/price.png" alt="Price/Day" class="spec-icon">
                     <span class="spec-text">$100/day</span>
                 </div>
             </div>
@@ -94,7 +96,7 @@
         <!-- Logo and Contact Info -->
         <div class="footer-column">
             <div class="footer-logo">
-                <img src="./Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
+                <img src="../Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
             </div>
             <p class="footer-description">DriveXpert is your trusted car rental service provider. We offer a wide range of vehicles at the best prices to make your driving experience smooth and comfortable.</p>
         </div>
@@ -141,7 +143,7 @@
     </div>
 </footer>
 
-<script src="./Assets/JS/details.js"></script>
-<script src="./Assets/JS/Cars.js"></script>
+<script src="../Assets/JS/details.js"></script>
+<script src="../Assets/JS/Cars.js"></script>
 </body>
 </html>

@@ -2,6 +2,20 @@
 include '../config.php';
 include './functions.php';
 
+// Fetch actual data for the dashboard
+$totalRentalsQuery = "SELECT COUNT(*) as total_rentals FROM rentals";
+$totalRentalsResult = $conn->query($totalRentalsQuery);
+$totalRentals = $totalRentalsResult->fetch_assoc()['total_rentals'];
+
+$totalRevenueQuery = "SELECT SUM(total_cost) as total_revenue FROM rentals WHERE status = 'completed'";
+$totalRevenueResult = $conn->query($totalRevenueQuery);
+$totalRevenue = $totalRevenueResult->fetch_assoc()['total_revenue'] ?? 0; // Default to 0 if no revenue
+
+// Updated query to count active customers (assuming no status column)
+$activeCustomersQuery = "SELECT COUNT(*) as active_customers FROM users WHERE role = 'customer'";
+$activeCustomersResult = $conn->query($activeCustomersQuery);
+$activeCustomers = $activeCustomersResult->fetch_assoc()['active_customers'];
+
 // Fetch data for the charts
 $monthlyRentals = getMonthlyRentals($conn);
 $revenueDistribution = getRevenueDistribution($conn);
@@ -20,6 +34,7 @@ foreach ($monthlyRevenue as $month => $revenue) {
     $monthlyRevenueData[$month - 1] = $revenue;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +85,7 @@ foreach ($monthlyRevenue as $month => $revenue) {
             font-size: 0.9em;
             color: #444;
         }
-        .btn {
+        .btn1 {
             background-color: #db1111;
             color: #fff;
             border: none;
@@ -79,7 +94,7 @@ foreach ($monthlyRevenue as $month => $revenue) {
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .btn:hover {
+        .btn1:hover {
             background-color: #a50d0d;
         }
     </style>
@@ -92,8 +107,6 @@ foreach ($monthlyRevenue as $month => $revenue) {
     </div>
     <nav class="nav-links">
         <a href="admin_dashboard.php" class="active">Dashboard</a>
-        
-        <!-- Rentals Dropdown -->
         <div class="dropdown">
             <a class="dropdown-toggle">Rentals</a>
             <div class="dropdown-menu">
@@ -102,7 +115,6 @@ foreach ($monthlyRevenue as $month => $revenue) {
                 <a href="manage_rentals.php">Manage Rental</a>
             </div>
         </div>
-        
         <a href="manage_customers.php">Customers</a>
         <a href="manage_cars.php">Cars</a>
         <a href="manage_fines.php">Fines</a>
@@ -118,9 +130,9 @@ foreach ($monthlyRevenue as $month => $revenue) {
 
     <!-- Key Metrics Cards -->
     <div class="card-container">
-        <div class="card"><h3>Total Rentals</h3><p>125</p></div>
-        <div class="card"><h3>Revenue</h3><p>$12,500</p></div>
-        <div class="card"><h3>Active Customers</h3><p>320</p></div>
+        <div class="card"><h3>Total Rentals</h3><p><?php echo $totalRentals; ?></p></div>
+        <div class="card"><h3>Revenue</h3><p>$<?php echo number_format($totalRevenue, 2); ?></p></div>
+        <div class="card"><h3>Active Customers</h3><p><?php echo $activeCustomers; ?></p></div>
     </div>
 
     <!-- Car Availability Section -->
@@ -137,7 +149,7 @@ foreach ($monthlyRevenue as $month => $revenue) {
                     <div class='car-card-details'>
                         <h4>{$car['brand']} {$car['model']}</h4>
                         <p>Availability: " . ($car['availability'] ? "Available" : "Rented") . "</p>
-                        <button class='btn'>View Details</button>
+                        <button class='btn1'>View Details</button>
                     </div>
                 </div>";
             }
@@ -165,7 +177,7 @@ foreach ($monthlyRevenue as $month => $revenue) {
                         <p>Customer: {$rental['customer_name']}</p>
                         <p>Car Model: {$rental['car_model']}</p>
                         <p>Due Date: {$rental['date_to']}</p>
-                        <button class='btn'>Manage Rental</button>
+                        <button class='btn1'>Manage Rental</button>
                     </div>
                 </div>";
             }
@@ -193,7 +205,7 @@ foreach ($monthlyRevenue as $month => $revenue) {
                         <p>Customer: {$request['customer_name']}</p>
                         <p>Requested Car: {$request['car_model']}</p>
                         <p>Start Date: {$request['date_from']}</p>
-                        <button class='btn'>Approve Request</button>
+                        <button class='btn1'>Approve Request</button>
                     </div>
                 </div>";
             }
@@ -202,19 +214,19 @@ foreach ($monthlyRevenue as $month => $revenue) {
     </section>
 
     <div class="chart-grid">
-    <div class="chart-container">
-        <h3>Monthly Rentals</h3>
-        <canvas id="barChart"></canvas>
+        <div class="chart-container">
+            <h3>Monthly Rentals</h3>
+            <canvas id="barChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Revenue Distribution</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Revenue Over Time</h3>
+            <canvas id="lineChart"></canvas>
+        </div>
     </div>
-    <div class="chart-container">
-        <h3>Revenue Distribution</h3>
-        <canvas id="pieChart"></canvas>
-    </div>
-    <div class="chart-container">
-        <h3>Revenue Over Time</h3>
-        <canvas id="lineChart"></canvas>
-    </div>
-</div>
 
 </main>
 
@@ -355,8 +367,6 @@ new Chart(lineCtx, {
     }
 });
 </script>
-
-
 
 </body>
 </html>

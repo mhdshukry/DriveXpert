@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriveXpert</title>
-    <link rel="stylesheet" href="./Assets/CSS/style.css">
+    <link rel="stylesheet" href="../Assets/CSS/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,19 +22,19 @@
 <body>
 <header class="header">
     <div class="logo">
-        <img src="./Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
+        <img src="../Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
     </div>
     <nav class="nav-links">
         <a href="./index.php">Home</a>
-        <a href="./rent.php">Rent</a>
+        <a href="./Rent.php">Rent</a>
         <a href="./Cars.php">Cars</a>
         <a href="./aboutus.php">About Us</a>
         <a href="./ContactUs.php">Contact Us</a>
     </nav>
     <div class="auth-buttons">
-        <button class="btn" onclick="openModal('loginModal')">Sign In</button>
-        <button class="btn" onclick="openModal('signupModal')">Sign Up</button>
-    </div>
+    <button class="btn logout-btn" onclick="window.location.href='logout.php'">Logout</button>
+</div>
+
 </header>
 
 <!-- Hero Section -->
@@ -52,21 +57,21 @@
     <!-- Car Image with Background Layer -->
     <div class="car-image-containers">
         <!-- Car Image -->
-        <img src="./Assets/Images/car.png" alt="Car" class="car-image">
+        <img src="../Assets/Images/car.png" alt="Car" class="car-image">
     </div>
 
    <!-- Yellow Curve -->
    <div class="yellow-curve">
         <!-- Car Brand Logos -->
         <div class="car-brand-logos">
-            <img src="./Assets/Images/tesla-removebg-preview.png" alt="Brand 1">
-            <img src="./Assets/Images/Lamborghini-removebg-preview.png" alt="Brand 2">
-            <img src="./Assets/Images/Rolls_Royce-removebg-preview.png" alt="Brand 3">
-            <img src="./Assets/Images/benz-removebg-preview.png" alt="Brand 4">
-            <img src="./Assets/Images/audi-removebg-preview.png" alt="Brand 5">
-            <img src="./Assets/Images/bmw-removebg-preview.png" alt="Brand 6">
-            <img src="./Assets/Images/ferrari-removebg-preview.png" alt="Brand 7">
-            <img src="./Assets/Images/toyota-removebg-preview.png" alt="Brand 8">
+            <img src="../Assets/Images/tesla-removebg-preview.png" alt="Brand 1">
+            <img src="../Assets/Images/Lamborghini-removebg-preview.png" alt="Brand 2">
+            <img src="../Assets/Images/Rolls_Royce-removebg-preview.png" alt="Brand 3">
+            <img src="../Assets/Images/benz-removebg-preview.png" alt="Brand 4">
+            <img src="../Assets/Images/audi-removebg-preview.png" alt="Brand 5">
+            <img src="../Assets/Images/bmw-removebg-preview.png" alt="Brand 6">
+            <img src="../Assets/Images/ferrari-removebg-preview.png" alt="Brand 7">
+            <img src="../Assets/Images/toyota-removebg-preview.png" alt="Brand 8">
         </div>
     </div>
 </section>
@@ -83,7 +88,7 @@
     <div class="feature-items-wrapper">
         <div class="feature-item">
             <div class="feature-image">
-                <img src="Assets/Images/home-1.jpg" alt="Feature 1">
+                <img src="../Assets/Images/home-1.jpg" alt="Feature 1">
                 <div class="feature-logo">
                     <i class="fas fa-dollar-sign"></i>
                 </div>
@@ -93,7 +98,7 @@
 
         <div class="feature-item">
             <div class="feature-image">
-                <img src="Assets/Images/home-2.jpg" alt="Feature 2">
+                <img src="../Assets/Images/home-2.jpg" alt="Feature 2">
                 <div class="feature-logo">
                     <i class="fas fa-globe"></i>
                 </div>
@@ -103,7 +108,7 @@
 
         <div class="feature-item">
             <div class="feature-image">
-                <img src="Assets/Images/home2.jpg" alt="Feature 3">
+                <img src="../Assets/Images/home2.jpg" alt="Feature 3">
                 <div class="feature-logo">
                     <i class="fas fa-exchange-alt"></i>
                 </div>
@@ -113,7 +118,7 @@
 
         <div class="feature-item">
             <div class="feature-image">
-                <img src="Assets/Images/home-4.jpg" alt="Feature 4">
+                <img src="../Assets/Images/home-4.jpg" alt="Feature 4">
                 <div class="feature-logo">
                     <i class="fas fa-user-check"></i>
                 </div>
@@ -178,7 +183,7 @@
         </div>
 
         <div class="car-image-container">
-            <img src="Assets/Images/car5.png" alt="Car Image" class="car-image1">
+            <img src="../Assets/Images/car5.png" alt="Car Image" class="car-image1">
         </div>
 
         <div class="slider-controls">
@@ -200,19 +205,19 @@
                     <span class="spec-text">Lexus</span>
                 </div>
                 <div class="spec-item">
-                    <img src="Assets/images/seat.png" alt="Seat Capacity" class="spec-icon">
+                    <img src="../Assets/images/seat.png" alt="Seat Capacity" class="spec-icon">
                     <span class="spec-text">4 Seats</span>
                 </div>
                 <div class="spec-item">
-                    <img src="Assets/images/speed.png" alt="Max Speed" class="spec-icon">
+                    <img src="../Assets/images/speed.png" alt="Max Speed" class="spec-icon">
                     <span class="spec-text">250 Km/h</span>
                 </div>
                 <div class="spec-item">
-                    <img src="Assets/images/fuel.png" alt="Litter/Km" class="spec-icon">
+                    <img src="../Assets/images/fuel.png" alt="Litter/Km" class="spec-icon">
                     <span class="spec-text">1L/10km</span>
                 </div>
                 <div class="spec-item">
-                    <img src="Assets/images/price.png" alt="Price/Day" class="spec-icon">
+                    <img src="../Assets/images/price.png" alt="Price/Day" class="spec-icon">
                     <span class="spec-text">$100/day</span>
                 </div>
             </div>
@@ -298,7 +303,7 @@
         <!-- Logo and Contact Info -->
         <div class="footer-column">
             <div class="footer-logo">
-                <img src="./Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
+                <img src="../Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
             </div>
             <p class="footer-description">DriveXpert is your trusted car rental service provider. We offer a wide range of vehicles at the best prices to make your driving experience smooth and comfortable.</p>
         </div>
@@ -345,10 +350,10 @@
     </div>
 </footer>
 
-<script src="./Assets/JS/Auto_Count.js"></script>
-<script src="./Assets/JS/Faq.js"></script>
-<script src="./Assets/JS/Cars.js"></script>
-<script src="./Assets/JS/Slider.js"></script>
-<script src="./Assets/JS/details.js"></script>
+<script src="../Assets/JS/Auto_Count.js"></script>
+<script src="../Assets/JS/Faq.js"></script>
+<script src="../Assets/JS/Cars.js"></script>
+<script src="../Assets/JS/Slider.js"></script>
+<script src="../Assets/JS/details.js"></script>
 </body>
 </html>
