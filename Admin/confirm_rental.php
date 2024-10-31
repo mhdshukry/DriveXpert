@@ -2,7 +2,7 @@
 include '../config.php';
 
 // Confirm rental if action is "confirm"
-if (isset($_GET['action']) && $_GET['action'] == 'confirm' && isset($_GET['id'])) {
+if (isset($_GET['action']) && $_GET['action'] === 'confirm' && isset($_GET['id'])) {
     $rental_id = $_GET['id'];
 
     // Update rental status to 'confirmed' and set car availability to not available (0)
@@ -114,30 +114,25 @@ function applyFine(rentalId) {
 </html>
 
 <?php
-// Handle actions after confirming necessary parameters
+// Handle completion and fine actions
 if (isset($_GET['action'])) {
-    $rental_id = isset($_GET['rental_id']) ? $_GET['rental_id'] : null;
-    $car_id = isset($_GET['car_id']) ? $_GET['car_id'] : null;
+    $rental_id = $_GET['rental_id'] ?? null;
+    $car_id = $_GET['car_id'] ?? null;
 
-    // Mark as complete and reset customer rental details
-    if ($_GET['action'] == 'complete' && $rental_id && $car_id) {
+    // Complete the rental
+    if ($_GET['action'] === 'complete' && $rental_id && $car_id) {
         $conn->query("UPDATE rentals SET status = 'completed' WHERE rental_id = $rental_id");
         $conn->query("UPDATE cars SET availability = 1 WHERE car_id = $car_id");
 
         // Reset rental-related fields in `customers` table
-        $resetCustomerQuery = "
-            UPDATE customers
-            SET rental_id = NULL, car_model = NULL, brand = NULL, date_from = NULL, date_to = NULL, total_fees = 0
-            WHERE rental_id = $rental_id
-        ";
-        $conn->query($resetCustomerQuery);
+        $conn->query("UPDATE customers SET rental_id = NULL, car_model = NULL, brand = NULL, date_from = NULL, date_to = NULL, total_fees = 0 WHERE rental_id = $rental_id");
 
         header("Location: confirm_rental.php");
         exit();
     }
 
-    // Apply fine if rental ID and amount are provided
-    if ($_GET['action'] == 'fine' && $rental_id && isset($_GET['amount'])) {
+    // Apply fine
+    if ($_GET['action'] === 'fine' && $rental_id && isset($_GET['amount'])) {
         $amount = $_GET['amount'];
         $conn->query("INSERT INTO fines (rental_id, amount, date_applied) VALUES ($rental_id, $amount, NOW())");
 
@@ -149,4 +144,3 @@ if (isset($_GET['action'])) {
     }
 }
 $conn->close();
-?>

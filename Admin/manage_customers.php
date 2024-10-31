@@ -1,17 +1,13 @@
 <?php
 include '../config.php';
 
-// Query to get currently renting customers using the `users`, `rentals`, `cars`, and `fines` tables
-$query = "
-    SELECT u.user_id AS customer_id, r.rental_id, u.name, u.nic_number, u.email, u.phone, 
-           c.model AS car_model, c.brand, r.date_from, r.date_to, 
-           (r.total_cost + COALESCE(SUM(f.amount), 0)) AS total_fees
-    FROM users u
-    JOIN rentals r ON u.user_id = r.user_id
-    JOIN cars c ON r.car_id = c.car_id
-    LEFT JOIN fines f ON f.customer_id = u.user_id
-    WHERE r.status = 'confirmed'
-    GROUP BY r.rental_id";
+// Query to get active confirmed rental customers
+$query = "SELECT r.rental_id, u.name, u.email, u.phone, u.nic_number, r.date_from, r.date_to, 
+          r.total_cost, c.model AS car_model, c.brand AS car_brand, c.seat_count, c.max_speed, c.km_per_liter
+          FROM rentals r
+          JOIN users u ON r.user_id = u.user_id
+          JOIN cars c ON r.car_id = c.car_id
+          WHERE r.status = 'confirmed'";
 $result = $conn->query($query);
 ?>
 
@@ -23,13 +19,38 @@ $result = $conn->query($query);
     <title>Manage Customers</title>
     <link rel="stylesheet" href="../Assets/CSS/admin.css">
     <style>
+        /* Professional styling for the details toggle container */
         .details-container {
             display: none;
-            background-color: #f9f9f9;
+            background-color: #F7F9FB;
             padding: 15px;
-            border: 1px solid #ddd;
+            border-left: 4px solid #2980B9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
             margin-top: 10px;
-            border-radius: 5px;
+            font-size: 14px;
+            color: #2C3E50;
+        }
+        .details-container h3 {
+            font-size: 16px;
+            color: #2980B9;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .details-container p {
+            margin: 5px 0;
+        }
+        .details-container p strong {
+            color: #34495E;
+        }
+
+        /* Styling individual detail sections within the toggle */
+        .details-section {
+            margin-bottom: 15px;
+        }
+        .details-section:last-child {
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -58,58 +79,87 @@ $result = $conn->query($query);
         <table class="table">
             <thead>
                 <tr>
-                    <th>Customer ID</th>
                     <th>Rental ID</th>
-                    <th>Name</th>
-                    <th>NIC No</th>
+                    <th>Customer Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
                     <th>Car Model</th>
-                    <th>Brand</th>
+                    <th>Car Brand</th>
                     <th>Rental Period</th>
-                    <th>Total Fees</th>
+                    <th>Total Cost</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while ($row = $result->fetch_assoc()) { ?>
                     <tr>
-                        <td><?= $row['customer_id'] ?></td>
                         <td><?= $row['rental_id'] ?></td>
                         <td><?= $row['name'] ?></td>
-                        <td><?= $row['nic_number'] ?></td>
                         <td><?= $row['email'] ?></td>
                         <td><?= $row['phone'] ?></td>
                         <td><?= $row['car_model'] ?></td>
-                        <td><?= $row['brand'] ?></td>
+                        <td><?= $row['car_brand'] ?></td>
                         <td><?= $row['date_from'] ?> to <?= $row['date_to'] ?></td>
-                        <td>$<?= number_format($row['total_fees'], 2) ?></td>
+                        <td>$<?= number_format($row['total_cost'], 2) ?></td>
                         <td>
-                            <button class="action-btn" onclick="toggleDetails(<?= $row['customer_id'] ?>)">Details</button>
+                            <button class="action-btn" onclick="toggleDetails(<?= $row['rental_id'] ?>)">Details</button>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="11">
-                            <div id="details-<?= $row['customer_id'] ?>" class="details-container">
-                                <?php
-                                // Fetch additional details related to fines and options
-                                $detailsQuery = "
-                                    SELECT f.reason, f.amount AS fine_amount, o.option_name, o.daily_cost
-                                    FROM fines f
-                                    LEFT JOIN rental_options ro ON ro.rental_id = {$row['rental_id']}
-                                    LEFT JOIN additional_options o ON o.option_id = ro.option_id
-                                    WHERE f.customer_id = {$row['customer_id']}";
-                                $detailsResult = $conn->query($detailsQuery);
-
-                                while ($detail = $detailsResult->fetch_assoc()) {
-                                    if ($detail['fine_amount']) {
-                                        echo "<p>Fine: $" . number_format($detail['fine_amount'], 2) . " (Reason: " . $detail['reason'] . ")</p>";
+                        <td colspan="9">
+                            <div id="details-<?= $row['rental_id'] ?>" class="details-container">
+                                <div class="details-section">
+                                    <h3>Customer Details</h3>
+                                    <p><strong>Name:</strong> <?= $row['name'] ?></p>
+                                    <p><strong>Email:</strong> <?= $row['email'] ?></p>
+                                    <p><strong>Phone:</strong> <?= $row['phone'] ?></p>
+                                    <p><strong>NIC:</strong> <?= $row['nic_number'] ?></p>
+                                </div>
+                                <div class="details-section">
+                                    <h3>Car Details</h3>
+                                    <p><strong>Model:</strong> <?= $row['car_model'] ?></p>
+                                    <p><strong>Brand:</strong> <?= $row['car_brand'] ?></p>
+                                    <p><strong>Seat Count:</strong> <?= $row['seat_count'] ?></p>
+                                    <p><strong>Max Speed:</strong> <?= $row['max_speed'] ?> km/h</p>
+                                    <p><strong>Efficiency:</strong> <?= $row['km_per_liter'] ?> km/l</p>
+                                </div>
+                                <div class="details-section">
+                                    <h3>Fine Details</h3>
+                                    <?php
+                                    // Fetch fine details
+                                    $fineQuery = "SELECT reason, amount FROM fines WHERE customer_id = {$row['rental_id']}";
+                                    $fineResult = $conn->query($fineQuery);
+                                    $totalFine = 0;
+                                    while ($fine = $fineResult->fetch_assoc()) {
+                                        echo "<p><strong>Fine:</strong> $" . number_format($fine['amount'], 2) . " (Reason: " . $fine['reason'] . ")</p>";
+                                        $totalFine += $fine['amount'];
                                     }
-                                    if ($detail['option_name']) {
-                                        echo "<p>Additional Option: " . $detail['option_name'] . " - $" . number_format($detail['daily_cost'], 2) . " per day</p>";
+                                    ?>
+                                </div>
+                                <div class="details-section">
+                                    <h3>Additional Options</h3>
+                                    <?php
+                                    // Fetch additional options details
+                                    $optionQuery = "SELECT o.option_name, o.daily_cost
+                                                    FROM rental_options ro
+                                                    JOIN additional_options o ON o.option_id = ro.option_id
+                                                    WHERE ro.rental_id = {$row['rental_id']}";
+                                    $optionResult = $conn->query($optionQuery);
+                                    $totalOptionCost = 0;
+                                    while ($option = $optionResult->fetch_assoc()) {
+                                        $daysRented = (strtotime($row['date_to']) - strtotime($row['date_from'])) / 86400;
+                                        $optionCost = $option['daily_cost'] * $daysRented;
+                                        echo "<p><strong>Option:</strong> " . $option['option_name'] . " - $" . number_format($option['daily_cost'], 2) . " per day (Total: $" . number_format($optionCost, 2) . ")</p>";
+                                        $totalOptionCost += $optionCost;
                                     }
-                                }
-                                ?>
+                                    ?>
+                                </div>
+                                <div class="details-section">
+                                    <h3>Summary</h3>
+                                    <p><strong>Total Fine:</strong> $<?= number_format($totalFine, 2) ?></p>
+                                    <p><strong>Total Additional Options Cost:</strong> $<?= number_format($totalOptionCost, 2) ?></p>
+                                    <p><strong>Full Cost:</strong> $<?= number_format($row['total_cost'] + $totalFine + $totalOptionCost, 2) ?></p>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -124,8 +174,8 @@ $result = $conn->query($query);
 </footer>
 
 <script>
-function toggleDetails(customerId) {
-    var detailsDiv = document.getElementById('details-' + customerId);
+function toggleDetails(rentalId) {
+    var detailsDiv = document.getElementById('details-' + rentalId);
     detailsDiv.style.display = detailsDiv.style.display === 'none' ? 'block' : 'none';
 }
 </script>
