@@ -148,7 +148,7 @@ foreach ($monthlyRevenue as $month => $revenue) {
                 <div class='car-card-details'>
                     <h4>{$car['brand']} {$car['model']}</h4>
                     <p>Availability: " . ($car['availability'] ? "Available" : "Rented") . "</p>
-                    <button class='btn1'>View Details</button>
+                    <button class='btn1' onclick=window.location.href='manage_cars.php'>View Details</button>
                 </div>
             </div>";
         }
@@ -177,7 +177,7 @@ foreach ($monthlyRevenue as $month => $revenue) {
                         <p>Customer: {$rental['customer_name']}</p>
                         <p>Car Model: {$rental['car_model']}</p>
                         <p>Due Date: {$rental['date_to']}</p>
-                        <button class='btn1'>Manage Rental</button>
+                        <button class='btn1' onclick=window.location.href='confirm_rental.php'>Manage Rental</button>
                     </div>
                 </div>";
             }
@@ -205,7 +205,7 @@ foreach ($monthlyRevenue as $month => $revenue) {
                         <p>Customer: {$request['customer_name']}</p>
                         <p>Requested Car: {$request['car_model']}</p>
                         <p>Start Date: {$request['date_from']}</p>
-                        <button class='btn1'>Approve Request</button>
+                        <button class='btn1' onclick=window.location.href='manage_rentals.php'>Approve Request</button>
                     </div>
                 </div>";
             }

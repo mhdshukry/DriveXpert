@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("iissd", $user_id, $car_id, $date_from, $date_to, $total_cost);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Rental booked successfully!'); window.location.href='rent.php';</script>";
+        echo "<script>alert('Rental booked successfully!'); window.location.href='client_booking.php';</script>";
     } else {
         echo "<script>alert('Error booking rental. Please try again.');</script>";
     }

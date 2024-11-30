@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Redirect based on the user's role
         if ($role === 'admin') {
-            header("Location: admin_dashboard.php");
+            header("Location: Admin/admin_dashboard.php");
         } elseif ($role === 'customer') {
             header("Location: Client/Home.php");
         } else {
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         exit(); // Make sure to exit after redirection
     } else {
-        echo "Invalid credentials.";
+        header("Location: auth.php");
     }
 
     $stmt->close();

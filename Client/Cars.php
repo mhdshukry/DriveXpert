@@ -68,7 +68,7 @@ $conn->close();
         </div>
 
         <div class="car-buttons">
-            <button class="btn rent-btn">Rent Now</button>
+            <button class="btn rent-btn" onclick="window.location.href='rent.php'">Rent Now</button>
             <button class="btn details-btn" onclick="toggleSpecs()">Details</button>
         </div>
 
