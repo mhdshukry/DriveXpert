@@ -1,14 +1,11 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../auth.php?action=signin');
-    exit;
-}
-
-$assetPrefix = '../';
+session_start(); // Public landing page now; restrict only booking actions via JS.
+$currentUri = $_SERVER['REQUEST_URI'] ?? 'index.php';
+$assetPrefix = '';
+$signinUrl = 'auth.php?action=signin&return=' . urlencode($currentUri);
+$signupUrl = 'auth.php?action=signup&return=' . urlencode($currentUri);
+$logoutPath = (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') ? 'Admin/logout.php' : 'Client/logout.php';
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,8 +13,8 @@ $assetPrefix = '../';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriveXpert</title>
-    <link rel="icon" type="image/png" href="<?php echo $assetPrefix; ?>Assets/Images/DriveXpert.png">
-    <link rel="stylesheet" href="<?php echo $assetPrefix; ?>Assets/CSS/style.css">
+    <link rel="icon" type="image/png" href="./Assets/Images/DriveXpert.png">
+    <link rel="stylesheet" href="./Assets/CSS/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,19 +30,23 @@ $assetPrefix = '../';
 <body data-asset-prefix="<?php echo htmlspecialchars($assetPrefix, ENT_QUOTES); ?>">
     <header class="header">
         <div class="logo">
-            <img src="<?php echo $assetPrefix; ?>Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
+            <img src="./Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
         </div>
         <nav class="nav-links">
-            <a href="./Home.php" class="active">Home</a>
+            <a href="./index.php">Home</a>
             <a href="./rent.php">Rent</a>
             <a href="./Cars.php">Cars</a>
             <a href="./aboutus.php">About Us</a>
             <a href="./ContactUs.php">Contact Us</a>
         </nav>
         <div class="auth-buttons">
-            <button class="btn logout-btn" onclick="window.location.href='logout.php'">Logout</button>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <button class="btn logout-btn" onclick="window.location.href='./<?php echo $logoutPath; ?>'">Logout</button>
+            <?php else: ?>
+                <button class="btn" onclick="window.location.href='./<?php echo $signinUrl; ?>'">Sign In</button>
+                <button class="btn" onclick="window.location.href='./<?php echo $signupUrl; ?>'">Sign Up</button>
+            <?php endif; ?>
         </div>
-
     </header>
 
     <!-- Hero Section -->
@@ -68,21 +69,21 @@ $assetPrefix = '../';
         <!-- Car Image with Background Layer -->
         <div class="car-image-containers">
             <!-- Car Image -->
-            <img src="<?php echo $assetPrefix; ?>Assets/Images/car.png" alt="Car" class="car-image">
+            <img src="./Assets/Images/car.png" alt="Car" class="car-image">
         </div>
 
         <!-- Yellow Curve -->
         <div class="yellow-curve">
             <!-- Car Brand Logos -->
             <div class="car-brand-logos">
-                <img src="<?php echo $assetPrefix; ?>Assets/Images/tesla-removebg-preview.png" alt="Brand 1">
-                <img src="<?php echo $assetPrefix; ?>Assets/Images/Lamborghini-removebg-preview.png" alt="Brand 2">
-                <img src="<?php echo $assetPrefix; ?>Assets/Images/Rolls_Royce-removebg-preview.png" alt="Brand 3">
-                <img src="<?php echo $assetPrefix; ?>Assets/Images/benz-removebg-preview.png" alt="Brand 4">
-                <img src="<?php echo $assetPrefix; ?>Assets/Images/audi-removebg-preview.png" alt="Brand 5">
-                <img src="<?php echo $assetPrefix; ?>Assets/Images/bmw-removebg-preview.png" alt="Brand 6">
-                <img src="<?php echo $assetPrefix; ?>Assets/Images/ferrari-removebg-preview.png" alt="Brand 7">
-                <img src="<?php echo $assetPrefix; ?>Assets/Images/toyota-removebg-preview.png" alt="Brand 8">
+                <img src="./Assets/Images/tesla-removebg-preview.png" alt="Brand 1">
+                <img src="./Assets/Images/Lamborghini-removebg-preview.png" alt="Brand 2">
+                <img src="./Assets/Images/Rolls_Royce-removebg-preview.png" alt="Brand 3">
+                <img src="./Assets/Images/benz-removebg-preview.png" alt="Brand 4">
+                <img src="./Assets/Images/audi-removebg-preview.png" alt="Brand 5">
+                <img src="./Assets/Images/bmw-removebg-preview.png" alt="Brand 6">
+                <img src="./Assets/Images/ferrari-removebg-preview.png" alt="Brand 7">
+                <img src="./Assets/Images/toyota-removebg-preview.png" alt="Brand 8">
             </div>
         </div>
     </section>
@@ -99,8 +100,7 @@ $assetPrefix = '../';
         <div class="feature-items-wrapper">
             <div class="feature-item">
                 <div class="feature-image">
-                    <img src="<?php echo $assetPrefix; ?>Assets/Images/home-1.jpg" alt="Feature 1"
-                        class="uniform-car-img">
+                    <img src="Assets/Images/home-1.jpg" alt="Feature 1">
                     <div class="feature-logo">
                         <i class="fas fa-dollar-sign"></i>
                     </div>
@@ -110,8 +110,7 @@ $assetPrefix = '../';
 
             <div class="feature-item">
                 <div class="feature-image">
-                    <img src="<?php echo $assetPrefix; ?>Assets/Images/home-2.jpg" alt="Feature 2"
-                        class="uniform-car-img">
+                    <img src="Assets/Images/home-2.jpg" alt="Feature 2">
                     <div class="feature-logo">
                         <i class="fas fa-globe"></i>
                     </div>
@@ -121,8 +120,7 @@ $assetPrefix = '../';
 
             <div class="feature-item">
                 <div class="feature-image">
-                    <img src="<?php echo $assetPrefix; ?>Assets/Images/home2.jpg" alt="Feature 3"
-                        class="uniform-car-img">
+                    <img src="Assets/Images/home2.jpg" alt="Feature 3">
                     <div class="feature-logo">
                         <i class="fas fa-exchange-alt"></i>
                     </div>
@@ -132,8 +130,7 @@ $assetPrefix = '../';
 
             <div class="feature-item">
                 <div class="feature-image">
-                    <img src="<?php echo $assetPrefix; ?>Assets/Images/home-4.jpg" alt="Feature 4"
-                        class="uniform-car-img">
+                    <img src="Assets/Images/home-4.jpg" alt="Feature 4">
                     <div class="feature-logo">
                         <i class="fas fa-user-check"></i>
                     </div>
@@ -209,7 +206,7 @@ $assetPrefix = '../';
             </div>
 
             <div class="car-buttons">
-                <a href="./rent.php" style="text-decoration:none"><button class="btn rent-btn">Rent Now</button></a>
+                <button class="btn rent-btn" data-gated="rent">Rent Now</button>
                 <button class="btn details-btn" onclick="toggleSpecs()">Details</button>
             </div>
 
@@ -223,26 +220,23 @@ $assetPrefix = '../';
                         <span class="spec-text" data-spec="brand">LEXUS</span>
                     </div>
                     <div class="spec-item">
-                        <img src="<?php echo $assetPrefix; ?>Assets/Images/seat.png" alt="Seat Capacity"
-                            class="spec-icon">
+                        <img src="Assets/Images/seat.png" alt="Seat Capacity" class="spec-icon">
                         <span class="spec-text" data-spec="seats">5 Seats</span>
                     </div>
                     <div class="spec-item">
-                        <img src="<?php echo $assetPrefix; ?>Assets/Images/speed.png" alt="Max Speed" class="spec-icon">
+                        <img src="Assets/Images/speed.png" alt="Max Speed" class="spec-icon">
                         <span class="spec-text" data-spec="speed">200 Km/h</span>
                     </div>
                     <div class="spec-item">
-                        <img src="<?php echo $assetPrefix; ?>Assets/Images/fuel.png" alt="Fuel Efficiency"
-                            class="spec-icon">
+                        <img src="Assets/Images/fuel.png" alt="Litter/Km" class="spec-icon">
                         <span class="spec-text" data-spec="efficiency">14.2 km/l</span>
                     </div>
                     <div class="spec-item">
-                        <img src="<?php echo $assetPrefix; ?>Assets/Images/price.png" alt="Price per Day"
-                            class="spec-icon">
+                        <img src="Assets/Images/price.png" alt="Price/Day" class="spec-icon">
                         <span class="spec-text" data-spec="price">$50/day</span>
                     </div>
                 </div>
-                <a href="./Cars.php" style="text-decoration:none"><button class="btn rent-now-btn">Rent Now</button></a>
+                <button class="btn rent-now-btn" data-gated="rent">Rent Now</button>
             </div>
         </div>
     </section>
@@ -329,7 +323,7 @@ $assetPrefix = '../';
             <!-- Logo and Contact Info -->
             <div class="footer-column">
                 <div class="footer-logo">
-                    <img src="<?php echo $assetPrefix; ?>Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
+                    <img src="./Assets/Images/DriveXpert.png" alt="DriveXpert Logo">
                 </div>
                 <p class="footer-description">DriveXpert is your trusted car rental service provider. We offer a wide
                     range of vehicles at the best prices to make your driving experience smooth and comfortable.</p>
@@ -344,7 +338,7 @@ $assetPrefix = '../';
                     <li><a href="./Cars.php">Cars</a></li>
                     <li><a href="./aboutus.php">About Us</a></li>
                     <li><a href="./ContactUs.php">Contact Us</a></li>
-                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="./Admin/Admin_dashboard.php">FAQs</a></li>
                 </ul>
             </div>
 
@@ -377,13 +371,27 @@ $assetPrefix = '../';
         </div>
     </footer>
 
-    <?php include __DIR__ . '/status_fab.php'; ?>
-
-    <script src="<?php echo $assetPrefix; ?>Assets/JS/Auto_Count.js"></script>
-    <script src="<?php echo $assetPrefix; ?>Assets/JS/Faq.js"></script>
-    <script src="<?php echo $assetPrefix; ?>Assets/JS/Cars.js"></script>
-    <script src="<?php echo $assetPrefix; ?>Assets/JS/Slider.js"></script>
-    <script src="<?php echo $assetPrefix; ?>Assets/JS/details.js"></script>
+    <script src="./Assets/JS/Auto_Count.js"></script>
+    <script src="./Assets/JS/Faq.js"></script>
+    <script src="./Assets/JS/Cars.js"></script>
+    <script src="./Assets/JS/Slider.js"></script>
+    <script src="./Assets/JS/details.js"></script>
+    <script>
+        const IS_LOGGED_IN = <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>;
+        function redirectToAuth(returnTo) {
+            window.location.href = 'auth.php?action=signin' + (returnTo ? ('&return=' + encodeURIComponent(returnTo)) : '');
+        }
+        document.querySelectorAll('[data-gated="rent"]').forEach(btn => {
+            btn.addEventListener('click', e => {
+                if (!IS_LOGGED_IN) {
+                    e.preventDefault();
+                    redirectToAuth('rent.php');
+                } else {
+                    window.location.href = 'rent.php';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

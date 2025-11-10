@@ -1,159 +1,158 @@
 /* General styles */
 
 body {
-    margin: 0;
-    font-family: "Nunito", sans-serif;
-    background-color: #f8f9fa;
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  background-color: #f8f9fa;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1d1d1f;
-    color: #fff;
-    padding: 10px 18px;
-    width: calc(100% - 250px);
-    box-sizing: border-box;
-    z-index: 1000;
-    position: fixed;
-    top: 15px;
-    /* Start outside of the viewport */
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    height: 70px;
-    border-radius: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1d1d1f;
+  color: #fff;
+  padding: 10px 18px;
+  width: calc(100% - 250px);
+  box-sizing: border-box;
+  z-index: 1000;
+  position: fixed;
+  top: 15px;
+  /* Start outside of the viewport */
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: 70px;
+  border-radius: 45px;
 }
 
 .header .logo img {
-    height: 200px;
-    width: 200px;
-    margin-left: -20px;
+  height: 200px;
+  width: 200px;
+  margin-left: -20px;
 }
 
 .nav-links {
-    display: flex;
-    gap: 20px;
-    font-family: "Nunito", sans-serif;
+  display: flex;
+  gap: 20px;
+  font-family: "Nunito", sans-serif;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 8px 15px;
-    transition: color 0.3s ease;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 8px 15px;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #db1111;
+  color: #db1111;
 }
 
 .nav-links a.active {
-    color: #db1111;
+  color: #db1111;
 }
 
 .auth-buttons {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: 12px;
 }
 
 .auth-buttons button {
-    background-color: #ffffff;
-    color: #1d1d1f;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
+  background-color: #ffffff;
+  color: #1d1d1f;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .auth-buttons button:hover {
-    background-color: #db1111;
-    color: #ffffff;
+  background-color: #db1111;
+  color: #ffffff;
 }
 
 /* Hero Section */
 .hero {
-    position: relative;
-    background-image: url('../Images/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 570px;
-    width: calc(95% - 250px);
-    margin-top: 120px;
-    margin-left: 130px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    /* Align content to the left */
-    color: #fff;
-    text-align: left;
-    /* Left-align the text */
-    padding: 0 20px;
-    border-radius: 25px;
-    padding-left: 50px;
-    /* Add padding for spacing on the left */
+  position: relative;
+  background-image: url("../Images/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 570px;
+  width: calc(95% - 250px);
+  margin-top: 120px;
+  margin-left: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* Align content to the left */
+  color: #fff;
+  text-align: left;
+  /* Left-align the text */
+  padding: 0 20px;
+  border-radius: 25px;
+  padding-left: 50px;
+  /* Add padding for spacing on the left */
 }
 
 /* Slider Styling */
 .slider {
-    position: relative;
+  position: relative;
 }
 
 /* Using keyframes to animate slides */
 .slide {
-    display: none;
-    opacity: 0;
-    animation: fadeOut 1s ease-in-out;
+  display: none;
+  opacity: 0;
+  animation: fadeOut 1s ease-in-out;
 }
 
 .active-slide {
-    display: block;
-    opacity: 1;
-    animation: fadeIn 1s ease-in-out forwards;
+  display: block;
+  opacity: 1;
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
 /* Keyframes for fade-in effect */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Keyframes for fade-out effect */
 @keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    to {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
 }
 
 .tagline {
-    font-size: 1.2em;
-    color: #f0f0f0;
-    margin-top: -150px;
+  font-size: 1.2em;
+  color: #f0f0f0;
+  margin-top: -150px;
 }
 
 .highlight {
-    color: #db1111;
-    /* Highlight color similar to your image */
+  color: #db1111;
+  /* Highlight color similar to your image */
 }
-
 
 /* .hero::before {
     content: "";
@@ -168,1006 +167,1038 @@ body {
 } */
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards;
-    max-width: 800px;
-    margin: 0;
-    padding-top: 20px;
-    text-align: center;
-    /* Ensure hero content text aligns to the left */
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  max-width: 800px;
+  margin: 0;
+  padding-top: 20px;
+  text-align: center;
+  /* Ensure hero content text aligns to the left */
 }
 
 .hero-content h1,
 .hero-content p {
-    transition: transform 1s ease-in-out;
-    transform: translateY(0);
+  transition: transform 1s ease-in-out;
+  transform: translateY(0);
 }
 
 .hero-content h1 {
-    font-size: 3em;
-    font-family: "Oswald", sans-serif;
-    font-weight: 600;
-    font-style: italic;
-    line-height: 1.2;
-    text-transform: uppercase;
-    margin-top: 10px;
-    word-wrap: break-word;
-    text-align: center;
-    /* Left-align the heading */
+  font-size: 3em;
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin-top: 10px;
+  word-wrap: break-word;
+  text-align: center;
+  /* Left-align the heading */
 }
 
 .highlight {
-    color: #db1111;
-    /* Highlight color */
-    font-weight: bold;
-    /* Make the highlighted word bold for emphasis */
+  color: #db1111;
+  /* Highlight color */
+  font-weight: bold;
+  /* Make the highlighted word bold for emphasis */
 }
 
-
-
 .hero-content p {
-    font-size: 1.2em;
-    /* Reduce the font size for better fit */
-    font-family: "Oswald", sans-serif;
-    font-weight: 600;
-    font-style: italic;
-    margin-bottom: 10px;
-    line-height: 1.5;
-    /* Increase the line height for better readability */
+  font-size: 1.2em;
+  /* Reduce the font size for better fit */
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  /* Increase the line height for better readability */
 }
 
 .hero-btn {
-    background-color: #f0f0f0;
-    color: #000;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    display: inline-block;
-    text-align: left;
-    /* Left-align the button */
+  background-color: #f0f0f0;
+  color: #000;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-block;
+  text-align: left;
+  /* Left-align the button */
 }
 
 .hero-btn:hover {
-    background: none;
-    outline: white 2px solid;
-    color: white;
-    transition: 0.3s ease;
+  background: none;
+  outline: white 2px solid;
+  color: white;
+  transition: 0.3s ease;
 }
 
 /* Car Image Styling */
 .car-image {
-    position: absolute;
-    bottom: 0;
-    right: 5%;
-    z-index: 3;
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  z-index: 3;
 }
 
 .car-image {
-    position: absolute;
-    bottom: 0;
-    right: 5%;
-    z-index: 3;
-    width: 700px;
-    /* Adjust the size as needed */
-    animation: slideInRight 1.5s forwards;
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  z-index: 3;
+  width: 700px;
+  /* Adjust the size as needed */
+  animation: slideInRight 1.5s forwards;
 }
 
 @keyframes slideInRight {
-    from {
-        right: -1000px;
-    }
+  from {
+    right: -1000px;
+  }
 
-    to {
-        right: 5%;
-    }
+  to {
+    right: 5%;
+  }
 }
 
 /* Yellow Curve */
 .yellow-curve {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 200px;
-    background: #db1111;
-    /* Yellow color */
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    /* Align logos vertically in the middle */
-    justify-content: flex-start;
-    /* Align the logos to the left */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: #db1111;
+  /* Yellow color */
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  /* Align logos vertically in the middle */
+  justify-content: flex-start;
+  /* Align the logos to the left */
 
-    border-radius: 0 0 24px 24px;
+  border-radius: 0 0 24px 24px;
 }
 
 /* Car Brand Logos */
 .car-brand-logos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    max-width: 400px;
-    margin-left: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-width: 400px;
+  margin-left: 50px;
 }
 
 .car-brand-logos img {
-    position: relative;
-    left: -1000px;
-    /* Ensure logos start off-screen */
-    opacity: 0;
-    /* Initially hidden */
-    animation: slideInLeft 1.5s forwards;
-    width: 75px;
-    /* Set the width of each logo */
-    height: auto;
-    /* Keep aspect ratio */
-    transition: transform 0.3s ease;
+  position: relative;
+  left: -1000px;
+  /* Ensure logos start off-screen */
+  opacity: 0;
+  /* Initially hidden */
+  animation: slideInLeft 1.5s forwards;
+  width: 75px;
+  /* Set the width of each logo */
+  height: auto;
+  /* Keep aspect ratio */
+  transition: transform 0.3s ease;
 }
 
 /* Staggered Animation Delay for all 8 logos */
 .car-brand-logos img:nth-child(1) {
-    animation-delay: 0.3s;
+  animation-delay: 0.3s;
 }
-
 .car-brand-logos img:nth-child(2) {
-    animation-delay: 0.6s;
+  animation-delay: 0.6s;
 }
 
 .car-brand-logos img:nth-child(3) {
-    animation-delay: 0.9s;
+  animation-delay: 0.9s;
 }
 
 .car-brand-logos img:nth-child(4) {
-    animation-delay: 1.2s;
+  animation-delay: 1.2s;
 }
 
 .car-brand-logos img:nth-child(5) {
-    animation-delay: 1.5s;
+  animation-delay: 1.5s;
 }
 
 .car-brand-logos img:nth-child(6) {
-    animation-delay: 1.8s;
+  animation-delay: 1.8s;
 }
 
 .car-brand-logos img:nth-child(7) {
-    animation-delay: 2.1s;
+  animation-delay: 2.1s;
 }
 
 .car-brand-logos img:nth-child(8) {
-    animation-delay: 2.4s;
+  animation-delay: 2.4s;
 }
 
 /* Corrected Keyframes */
 @keyframes slideInLeft {
-    from {
-        left: -1000px;
-        /* Start off-screen */
-        opacity: 0;
-        /* Hidden at the start */
-    }
+  from {
+    left: -1000px;
+    /* Start off-screen */
+    opacity: 0;
+    /* Hidden at the start */
+  }
 
-    to {
-        left: 0;
-        opacity: 1;
-        /* Fully visible at the end */
-    }
+  to {
+    left: 0;
+    opacity: 1;
+    /* Fully visible at the end */
+  }
 }
 
 .car-brand-logos img:hover {
-    transform: scale(1.1);
-    /* Slight zoom effect on hover */
+  transform: scale(1.1);
+  /* Slight zoom effect on hover */
 }
 
 /* Features Section */
 .features-section {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px 0;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
 }
 
 .features-heading {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .features-heading .subheading {
-    font-size: 1.2em;
-    color: #999;
-    margin-bottom: 10px;
-    font-family: "Nunito", sans-serif;
+  font-size: 1.2em;
+  color: #999;
+  margin-bottom: 10px;
+  font-family: "Nunito", sans-serif;
 }
 
 .features-heading .main-heading {
-    font-size: 3em;
-    font-family: "Oswald", sans-serif;
-    font-weight: bold;
-    color: #000;
+  font-size: 3em;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  color: #000;
 }
 
 .features-heading .highlight {
-    color: #db1111;
-    font-weight: bold;
+  color: #db1111;
+  font-weight: bold;
 }
 
 /* Aligning feature items horizontally */
 .feature-items-wrapper {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    /* Ensures items wrap if they exceed container width */
-    gap: 30px;
-    /* Adjust spacing between feature items */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* Ensures items wrap if they exceed container width */
+  gap: 30px;
+  /* Adjust spacing between feature items */
 }
 
 .feature-item {
-    text-align: center;
-    position: relative;
-    margin: 0 20px;
+  text-align: center;
+  position: relative;
+  margin: 0 20px;
 }
 
 .feature-image {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
 
 .feature-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    transition: transform 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
 }
 
 .feature-logo {
-    z-index: 3;
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #db1111;
-    /* Yellow background */
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #ffffff;
+  z-index: 3;
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #db1111;
+  /* Yellow background */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ffffff;
 }
 
 .feature-title {
-    margin-top: 30px;
-    font-family: "Nunito", sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    color: #000;
+  margin-top: 30px;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
 }
-
 
 /* Stats Section Styling */
 .stats-section {
-    background-color: #1a1a1a;
-    /* Dark background color */
-    padding: 50px 0;
-    text-align: center;
-    color: #fff;
-    margin-top: 120px;
+  background-color: #1a1a1a;
+  /* Dark background color */
+  padding: 50px 0;
+  text-align: center;
+  color: #fff;
+  margin-top: 120px;
 }
 
 .stats-heading .subheading {
-    font-size: 1.2em;
-    color: #ccc;
-    margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #ccc;
+  margin-bottom: 10px;
 }
 
 .stats-heading .main-heading {
-    font-size: 3em;
-    font-family: "Oswald", sans-serif;
-    font-weight: bold;
+  font-size: 3em;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
 }
 
 .stats-heading .highlight {
-    color: #db1111;
-    /* Yellow highlight */
-    font-weight: bold;
+  color: #db1111;
+  /* Yellow highlight */
+  font-weight: bold;
 }
 
 .stats-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
 }
 
 .stat-item {
-    background-color: #2b2b2b;
-    padding: 20px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    width: 150px;
+  background-color: #2b2b2b;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 150px;
 }
 
 .stat-number {
-    font-family: "Oswald", sans-serif;
-    font-size: 3em;
-    font-weight: bold;
-    color: #db1111;
-    /* Yellow color for the number */
+  font-family: "Oswald", sans-serif;
+  font-size: 3em;
+  font-weight: bold;
+  color: #db1111;
+  /* Yellow color for the number */
 }
 
 .stat-item p {
-    position: absolute;
-    font-size: 1em;
-    color: #fff;
-    font-weight: bold;
-    padding: 7px 13px;
-    background: #db1111;
-    border-radius: 45px;
-    margin-left: 28px;
-    margin-top: -1px;
+  position: absolute;
+  font-size: 1em;
+  color: #fff;
+  font-weight: bold;
+  padding: 7px 13px;
+  background: #db1111;
+  border-radius: 45px;
+  margin-left: 28px;
+  margin-top: -1px;
 }
 
 /* General styles for the section */
 .steps-section {
-    text-align: center;
-    padding: 50px 0;
-    margin-top: 30px;
+  text-align: center;
+  padding: 50px 0;
+  margin-top: 30px;
 }
 
 /* Headings */
 .steps-heading .subheading {
-    font-size: 1.2em;
-    color: #999;
-    font-family: "Nunito", sans-serif;
+  font-size: 1.2em;
+  color: #999;
+  font-family: "Nunito", sans-serif;
 }
 
 .steps-heading .main-heading {
-    font-size: 3em;
-    font-family: "Oswald", sans-serif;
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 40px;
+  font-size: 3em;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 40px;
 }
 
 /* Wrapper for the steps */
 .steps-wrapper {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 /* Individual step items */
 .step-item {
-    background-color: #f8f9fa;
-    border: 1px solid #eee;
-    padding: 20px;
-    border-radius: 10px;
-    width: 220px;
-    text-align: center;
-    transition: border-color 0.3s ease;
+  background-color: #f8f9fa;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 10px;
+  width: 220px;
+  text-align: center;
+  transition: border-color 0.3s ease;
 }
 
 .step-item:hover {
-    border-color: #db1111;
+  border-color: #db1111;
 }
 
 /* Step Icon */
 .step-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    border: 2px solid #db1111;
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border: 2px solid #db1111;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .step-icon i {
-    font-size: 3em;
-    color: #000;
+  font-size: 3em;
+  color: #000;
 }
 
 .step-title {
-    font-size: 1.2em;
-    color: #000;
-    font-weight: bold;
-    margin-bottom: 15px;
-    font-family: "Nunito", sans-serif;
+  font-size: 1.2em;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-family: "Nunito", sans-serif;
 }
 
 .step-description {
-    font-size: 0.95em;
-    color: #666;
-    line-height: 1.5;
+  font-size: 0.95em;
+  color: #666;
+  line-height: 1.5;
 }
-
 
 /* Car Slider Section */
 .car-slider-section {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    /* Align items to the top */
-    align-items: center;
-    /* Center content horizontally */
-    position: relative;
-    padding-top: 50px;
-    /* Add padding to give space at the top */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Align items to the top */
+  align-items: center;
+  /* Center content horizontally */
+  position: relative;
+  padding-top: 50px;
+  /* Add padding to give space at the top */
+  margin-top: 40px;
+  padding-bottom: 120px;
 }
 
 .slider-heading {
-    text-align: center;
-    margin-bottom: 70px;
-    /* Reduce the space below the heading */
+  text-align: center;
+  margin-bottom: 70px;
+  /* Reduce the space below the heading */
 }
 
 .slider-heading .subheading {
-
-    font-size: 1.5rem;
-    font-family: 'Nunito', sans-serif;
-    color: #666;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-family: "Nunito", sans-serif;
+  color: #666;
+  margin-bottom: 10px;
 }
 
 .slider-heading .main-heading {
-    font-size: 3rem;
-    font-family: 'Oswald', sans-serif;
-    color: #333;
+  font-size: 3rem;
+  font-family: "Oswald", sans-serif;
+  color: #333;
 }
 
 .slider-heading .highlight {
-    color: #db1111;
-    /* Adjust the highlight color to match the theme */
+  color: #db1111;
+  /* Adjust the highlight color to match the theme */
 }
 
 .slider-wrapper {
-    position: relative;
-    width: 90%;
-    max-width: 1200px;
-    text-align: center;
-    margin-top: 20px;
-    /* Add space between headings and slider */
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  text-align: center;
+  margin-top: 20px;
+  padding-bottom: 48px;
+  /* Add space between headings and slider */
 }
 
 .car-info {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
 }
 
 .car-brand {
-    margin-top: -300px;
-    font-size: 4rem;
-    font-family: 'Oswald', sans-serif;
-    color: rgba(59, 26, 26, 0.793);
-    margin-bottom: -100px;
+  margin-top: -320px;
+  font-size: 5.5rem;
+  font-family: "Oswald", sans-serif;
+  color: rgba(59, 26, 26, 0.793);
+  margin-bottom: -110px;
 }
 
 .car-model {
-    font-size: 6rem;
-    font-family: 'Oswald', sans-serif;
-    color: rgba(59, 26, 26, 0.793);
+  font-size: 8rem;
+  font-family: "Oswald", sans-serif;
+  color: rgba(59, 26, 26, 0.793);
 }
 
 .car-image-container {
-    margin-top: 40px;
-    position: relative;
-    z-index: 2;
-    height: 400px;
+  margin-top: 40px;
+  position: relative;
+  z-index: 2;
+  height: clamp(340px, 50vw, 540px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .car-image1 {
-    width: 100%;
-    max-width: 700px;
+  height: 100%;
+  width: auto;
+  max-width: min(92vw, 1080px);
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+}
+@media (max-width: 768px) {
+  .car-brand {
+    font-size: 3.5rem;
+    margin-top: -220px;
+  }
+  .car-model {
+    font-size: 5.2rem;
+  }
+  .car-image-container {
+    height: clamp(260px, 54vw, 380px);
+  }
+  .car-image1 {
     height: 100%;
-    object-fit: cover;
+    width: auto;
+    max-width: 100%;
+  }
 }
 
 /* Slider controls positioning */
 .slider-controls {
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    justify-content: space-between;
-    z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 3;
 }
 
 .slider-controls button {
-    background: none;
-    border: none;
-    color: #333;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .slider-controls button:hover {
-    color: #db1111;
+  color: #db1111;
+}
+
+.slider-controls button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 /* Button styles */
 .car-buttons {
-    margin-top: 20px;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+  margin-top: 28px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .btn {
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-size: 1.2rem;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.car-buttons .btn.disabled,
+.rent-now-btn.disabled {
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 .rent-btn {
-    background-color: #db1111;
-    color: white;
-    border: 1px solid #db1111;
+  background-color: #db1111;
+  color: white;
+  border: 1px solid #db1111;
 }
 
 .details-btn {
-    background-color: white;
-    color: #333;
-    border: 1px solid #333;
+  background-color: white;
+  color: #333;
+  border: 1px solid #333;
 }
 
 .rent-btn:hover {
-    background-color: white;
-    color: #db1111;
-    border: 1px solid #db1111;
+  background-color: white;
+  color: #db1111;
+  border: 1px solid #db1111;
 }
 
 .details-btn:hover {
-    background-color: #333;
-    color: white;
+  background-color: #333;
+  color: white;
 }
-
 
 /* Car sliding animation */
 @keyframes slideLeft {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 
-    100% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }
 
 @keyframes slideRight {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 
-    100% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 @keyframes enterFromRight {
-    0% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes enterFromLeft {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* Vertical sliding animation for car brand and model */
 @keyframes slideUp {
-    0% {
-        transform: translateY(100%);
-        opacity: 0;
-    }
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slideDown {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 
-    100% {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }
 
 /* Apply animations when the slide changes */
 .car-image1.slide-out-left {
-    animation: slideLeft 0.8s forwards;
+  animation: slideLeft 0.8s forwards;
 }
 
 .car-image1.slide-out-right {
-    animation: slideRight 0.8s forwards;
+  animation: slideRight 0.8s forwards;
 }
 
 .car-image1.slide-in-right {
-    animation: enterFromRight 0.8s forwards;
+  animation: enterFromRight 0.8s forwards;
 }
 
 .car-image1.slide-in-left {
-    animation: enterFromLeft 0.8s forwards;
+  animation: enterFromLeft 0.8s forwards;
 }
 
 .car-brand,
 .car-model {
-    transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .car-brand.slide-out-vertical,
 .car-model.slide-out-vertical {
-    animation: slideDown 0.8s forwards;
+  animation: slideDown 0.8s forwards;
 }
 
 .car-brand.slide-in-vertical,
 .car-model.slide-in-vertical {
-    animation: slideUp 0.8s forwards;
+  animation: slideUp 0.8s forwards;
 }
-
 
 /* FAQ Section Styling */
 .faq-section {
-    background-color: #f8f9fa;
-    padding: 50px 0;
-    text-align: center;
-    margin-top: 30px;
+  background-color: #f8f9fa;
+  padding: 50px 0;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .faq-heading .subheading {
-    font-size: 1.5rem;
-    font-family: 'Nunito', sans-serif;
-    color: #999;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-family: "Nunito", sans-serif;
+  color: #999;
+  margin-bottom: 10px;
 }
 
 .faq-heading .main-heading {
-    font-size: 3rem;
-    font-family: 'Oswald', sans-serif;
-    font-weight: bold;
-    color: #000;
+  font-size: 3rem;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  color: #000;
 }
 
 .faq-heading .highlight {
-    color: #db1111;
+  color: #db1111;
 }
 
 .faq-items-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 20px;
-    margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  margin-top: 30px;
 }
 
 .faq-item {
-    background-color: #ffffff;
-    border: 1px solid #eee;
-    padding: 20px;
-    border-radius: 10px;
-    width: 45%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background-color: #ffffff;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 10px;
+  width: 45%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .faq-question-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .faq-question {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #000;
-    font-family: 'Nunito', sans-serif;
-    margin-bottom: 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #000;
+  font-family: "Nunito", sans-serif;
+  margin-bottom: 10px;
 }
 
 .faq-toggle {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: #db1111;
-    cursor: pointer;
-    font-weight: bold;
-    transition: transform 0.2s;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #db1111;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s;
 }
 
 .faq-toggle:focus {
-    outline: none;
+  outline: none;
 }
 
 .faq-answer {
-    font-size: 1.1rem;
-    color: #666;
-    line-height: 1.5;
-    font-family: 'Nunito', sans-serif;
-    display: none;
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.5;
+  font-family: "Nunito", sans-serif;
+  display: none;
 }
 
 .faq-item.active .faq-answer {
-    display: block;
+  display: block;
 }
 
 .faq-item.active .faq-toggle {
-    content: '-';
-    transform: rotate(360deg);
-    color: #333;
+  content: "-";
+  transform: rotate(360deg);
+  color: #333;
 }
-
 
 /* Footer Section */
 .footer-section {
-    background-color: #1d1d1f;
-    color: #ffffff;
-    padding: 40px 20px;
-    text-align: left;
-    font-family: 'Nunito', sans-serif;
+  background-color: #1d1d1f;
+  color: #ffffff;
+  padding: 40px 20px;
+  text-align: left;
+  font-family: "Nunito", sans-serif;
 }
 
 .footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .footer-column {
-    width: 25%;
-    margin-bottom: 20px;
+  width: 25%;
+  margin-bottom: 20px;
 }
 
 .footer-logo img {
-    width: 180px;
-    margin-bottom: -70px;
-    margin-top: -30px;
+  width: 180px;
+  margin-bottom: -70px;
+  margin-top: -30px;
 }
 
 .footer-description {
-    margin-bottom: 15px;
-    color: #bfbfbf;
-    max-width: 250px;
+  margin-bottom: 15px;
+  color: #bfbfbf;
+  max-width: 250px;
 }
 
 .footer-contact,
 .footer-email {
-    color: #bfbfbf;
-    font-size: 14px;
+  color: #bfbfbf;
+  font-size: 14px;
 }
 
 .footer-column h4 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #ffffff;
 }
 
 .footer-links,
 .footer-social {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .footer-links li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .footer-links li a {
-    color: #bfbfbf;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: #bfbfbf;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .footer-links li a:hover {
-    color: #db1111;
+  color: #db1111;
 }
 
 .footer-social {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 
 .footer-social li a {
-    color: #bfbfbf;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
+  color: #bfbfbf;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .footer-social li a:hover {
-    color: #db1111;
+  color: #db1111;
 }
 
 /* Newsletter Signup */
 .footer-newsletter-form input {
-    width: calc(100% - 100px);
-    padding: 10px;
-    border-radius: 25px;
-    border: none;
-    margin-right: 10px;
-    font-size: 14px;
+  width: calc(100% - 100px);
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  margin-right: 10px;
+  font-size: 14px;
 }
 
 .footer-newsletter-form button {
-    padding: 10px 20px;
-    border-radius: 25px;
-    background-color: #db1111;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: #db1111;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .footer-newsletter-form button:hover {
-    background-color: #f5c000;
+  background-color: #f5c000;
 }
 
 /* Footer Bottom */
 .footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 20px;
-    margin-top: 20px;
-    text-align: center;
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .footer-bottom p {
-    font-size: 14px;
-    color: #bfbfbf;
+  font-size: 14px;
+  color: #bfbfbf;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .footer-column {
-        width: 100%;
-    }
+  .footer-column {
+    width: 100%;
+  }
 }
 
 /* Car Specs Container Overlay */
 .car-specs-container {
-    margin-top: 190px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 20;
-    /* High z-index to overlay buttons */
-    width: 90%;
-    /* Increase width to cover slider area */
-    max-width: 800px;
-    /* Optional: cap the maximum width */
-    background-color: rgba(255, 255, 255, 1);
-    padding: 25px;
-    height: 150px;
-    /* Increase padding for spacing */
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0s 0.5s;
+  margin-top: 190px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  width: 90%;
+  max-width: 800px;
+  padding: 25px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: transparent;
+  box-shadow: none;
+  color: #111111;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.5s ease, visibility 0s 0.5s;
 }
 
 /* Display details section when visible */
 .car-specs-container.visible {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.5s ease;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease;
 }
 
 /* Close Button */
 .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #ff5733;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ff5733;
 }
 
 /* Car Specs Styling */
 .car-specs {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    /* Allow items to wrap if needed */
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Allow items to wrap if needed */
+  margin-bottom: 10px;
+}
+
+.car-specs .spec-text {
+  color: #111111;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 /* Spec Item Styling */
 .spec-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
-    /* Adjust to fit more items horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  /* Adjust to fit more items horizontally */
 }
 
 .spec-icon {
-    font-size: 50px;
-    margin-bottom: 10px;
-    height: 70px;
-    width: 70px;
+  font-size: 50px;
+  margin-bottom: 10px;
+  height: 70px;
+  width: 70px;
 }
 
 .spec-text {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .rent-now-btn {
-    position: relative;
-    z-index: 1;
-    /* Keep behind details section */
-    padding: 15px 20px;
-    border-radius: 25px;
-    background-color: #db1111;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
+  position: relative;
+  z-index: 1;
+  /* Keep behind details section */
+  padding: 15px 20px;
+  border-radius: 25px;
+  background-color: #db1111;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .rent-now-btn:hover {
-    background-color: #fff;
-    outline: #333 1px solid;
-    color: #333;
+  background-color: #fff;
+  outline: #333 1px solid;
+  color: #333;
 }

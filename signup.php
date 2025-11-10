@@ -16,7 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "Registration successful!";
-        header("Location: auth.php?action=signin"); // Redirect to sign-in
+        $return = isset($_POST['return']) ? $_POST['return'] : '';
+        $redir = 'auth.php?action=signin' . ($return ? ('&return=' . urlencode($return)) : '');
+        header("Location: $redir"); // Redirect to sign-in with optional return URL
     } else {
         echo "Error: " . $stmt->error;
     }
