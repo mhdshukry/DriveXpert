@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2025 at 03:37 PM
+-- Generation Time: Nov 10, 2025 at 05:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,7 +68,7 @@ CREATE TABLE `cars` (
 --
 
 INSERT INTO `cars` (`car_id`, `brand`, `model`, `rent_per_day`, `availability`, `car_picture`, `created_at`, `seat_count`, `max_speed`, `km_per_liter`, `logo_picture`) VALUES
-(6, 'Toyota', 'Corolla', 40.00, 1, 'Assets/Images/uploads/car6.png', '2024-10-31 06:29:11', 5, 180, 15.50, 'Assets/Images/uploads/toyota.png'),
+(6, 'Toyota', 'Corolla', 40.00, 0, 'Assets/Images/uploads/car6.png', '2024-10-31 06:29:11', 5, 180, 15.50, 'Assets/Images/uploads/toyota.png'),
 (7, 'BMW', 'X5', 90.00, 1, 'Assets/Images/uploads/car2.png', '2024-10-31 06:29:11', 5, 250, 8.50, 'Assets/Images/uploads/bmw.png'),
 (8, 'Audi', 'A6', 85.00, 1, 'Assets/Images/uploads/car7.png', '2024-10-31 06:29:11', 5, 240, 9.50, 'Assets/Images/uploads/audi.png'),
 (9, 'Mercedes', 'E-Class', 95.00, 1, 'Assets/Images/uploads/car4.png', '2024-10-31 06:29:11', 5, 260, 10.20, 'Assets/Images/uploads/benz.png'),
@@ -96,13 +96,6 @@ CREATE TABLE `confirmed_rentals` (
   `fine` decimal(10,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `confirmed_rentals`
---
-
-INSERT INTO `confirmed_rentals` (`rental_id`, `user_id`, `car_id`, `date_from`, `date_to`, `total_cost`, `status`, `created_at`, `is_overdue`, `fine`) VALUES
-(1, 2, 7, '2024-10-02', '2024-10-06', 360.00, 'confirmed', '2024-10-02 03:30:00', 0, 0.00);
-
 -- --------------------------------------------------------
 
 --
@@ -124,6 +117,13 @@ CREATE TABLE `customers` (
   `total_fees` decimal(10,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`customer_id`, `name`, `email`, `phone`, `address`, `created_at`, `rental_id`, `car_model`, `brand`, `date_from`, `date_to`, `total_fees`) VALUES
+(4, 'Shukry', 'abcd@gmail.com', '0786543033', NULL, '2025-11-10 14:02:32', 37, 'Corolla', 'Toyota', '2025-11-09', '2025-11-10', 45.00);
+
 -- --------------------------------------------------------
 
 --
@@ -138,15 +138,6 @@ CREATE TABLE `feedback` (
   `comments` text DEFAULT NULL,
   `feedback_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `feedback`
---
-
-INSERT INTO `feedback` (`feedback_id`, `user_id`, `car_id`, `rating`, `comments`, `feedback_date`) VALUES
-(1, 1, NULL, 5, 'Great car, smooth rental experience!', '2024-10-28 12:23:15'),
-(2, 2, NULL, 4, 'Car was clean and comfortable.', '2024-10-28 12:23:15'),
-(3, 1, NULL, 5, 'Highly recommend the Tesla Model 3!', '2024-10-28 12:23:15');
 
 -- --------------------------------------------------------
 
@@ -224,22 +215,6 @@ CREATE TABLE `rentals` (
 --
 
 INSERT INTO `rentals` (`rental_id`, `user_id`, `car_id`, `date_from`, `date_to`, `total_cost`, `status`, `created_at`, `is_overdue`, `fine`) VALUES
-(1, 1, 6, '2024-10-01', '2024-10-05', 200.00, 'completed', '2024-10-01 02:30:00', 0, 0.00),
-(3, 1, 8, '2024-10-10', '2024-10-15', 450.00, 'completed', '2024-10-10 03:00:00', 1, 50.00),
-(4, 2, 9, '2024-10-12', '2024-10-17', 425.00, 'completed', '2024-10-12 04:00:00', 0, 0.00),
-(5, 1, 10, '2024-10-18', '2024-10-22', 240.00, 'completed', '2024-10-18 03:15:00', 0, 0.00),
-(6, 2, 8, '2024-10-22', '2024-10-26', 320.00, 'completed', '2024-10-22 05:30:00', 1, 25.00),
-(7, 1, 6, '2024-10-01', '2024-10-05', 200.00, 'completed', '2024-09-30 21:00:00', 0, 0.00),
-(10, 1, 6, '2024-10-01', '2024-10-05', 200.00, 'completed', '2024-09-30 21:00:00', 0, 0.00),
-(13, 1, 8, '2024-10-12', '2024-10-17', 450.00, 'completed', '2024-10-11 22:30:00', 1, 50.00),
-(16, 1, 8, '2024-11-05', '2024-11-10', 450.00, 'completed', '2024-10-31 05:30:00', 0, 0.00),
-(17, 2, 10, '2024-11-07', '2024-11-12', 520.00, 'completed', '2024-10-31 05:45:00', 0, 0.00),
-(18, 1, 9, '2024-11-08', '2024-11-15', 400.00, 'completed', '2024-10-31 06:00:00', 0, 0.00),
-(19, 2, 7, '2024-11-10', '2024-11-18', 600.00, 'completed', '2024-10-31 06:15:00', 0, 0.00),
-(20, 2, 10, '2024-11-20', '2024-11-25', 350.00, 'completed', '2024-11-18 03:00:00', 0, 0.00),
-(21, 1, 6, '2024-11-22', '2024-11-27', 400.00, 'completed', '2024-11-18 03:30:00', 0, 0.00),
-(22, 2, 7, '2024-11-23', '2024-11-29', 450.00, 'completed', '2024-11-18 04:00:00', 0, 0.00),
-(24, 1, 8, '2024-11-25', '2024-12-01', 420.00, 'completed', '2024-11-18 05:00:00', 0, 0.00),
 (25, 4, 6, '2024-10-31', '2024-11-01', 45.00, 'completed', '2024-10-31 17:48:59', 0, 0.00),
 (26, 4, 9, '2024-10-31', '2024-11-06', 575.00, 'pending', '2024-10-31 18:23:25', 0, 0.00),
 (27, 4, 7, '2024-11-06', '2024-12-06', 2725.00, 'completed', '2024-11-06 16:05:24', 0, 0.00),
@@ -251,7 +226,8 @@ INSERT INTO `rentals` (`rental_id`, `user_id`, `car_id`, `date_from`, `date_to`,
 (33, 4, 9, '2024-11-07', '2024-11-07', 5.00, 'pending', '2024-11-07 06:24:06', 0, 0.00),
 (34, 4, 6, '2024-11-12', '2024-11-14', 93.00, 'completed', '2024-11-07 06:40:59', 0, 0.00),
 (35, 4, 6, '2024-11-23', '2024-11-24', 57.00, 'completed', '2024-11-23 17:44:46', 0, 0.00),
-(36, 4, 7, '2024-12-12', '2024-12-13', 110.00, 'completed', '2024-12-12 05:51:45', 0, 0.00);
+(36, 4, 7, '2024-12-12', '2024-12-13', 110.00, 'completed', '2024-12-12 05:51:45', 0, 0.00),
+(37, 4, 6, '2025-11-09', '2025-11-10', 45.00, 'confirmed', '2025-11-09 23:37:02', 0, 0.00);
 
 -- --------------------------------------------------------
 
@@ -294,21 +270,12 @@ CREATE TABLE `rental_history` (
 --
 
 INSERT INTO `rental_history` (`history_id`, `rental_id`, `customer_id`, `date_from`, `date_to`, `total_fees`, `car_model`, `car_brand`, `seat_count`, `max_speed`, `km_per_liter`, `fine_details`, `additional_options`, `created_at`) VALUES
-(1, 1, 1, '2024-01-10', '2024-01-15', 500.00, 'Corolla', 'Toyota', 5, 180, 15.50, 'Late return - $20', 'GPS Navigation - $5 per day, Child Seat - $8 per day', '2024-10-31 08:42:45'),
-(2, 2, 2, '2024-02-01', '2024-02-07', 800.00, 'X5', 'BMW', 5, 250, 8.50, 'Smoking inside - $50', 'Additional Driver - $12 per day', '2024-10-31 08:42:45'),
-(3, 18, 1, '2024-11-08', '2024-11-15', 400.00, 'E-Class', 'Mercedes', 5, 260, 10.20, NULL, NULL, '2024-10-31 13:56:09'),
-(4, 1, 1, '2024-10-01', '2024-10-05', 200.00, 'Corolla', 'Toyota', 5, 180, 15.50, 'Total Fine: $0', NULL, '2024-10-31 14:14:11'),
-(5, 21, 1, '2024-11-22', '2024-11-27', 500.00, 'Corolla', 'Toyota', 5, 180, 15.50, 'Total Fine: $100.00', NULL, '2024-10-31 14:16:41'),
-(6, 20, 2, '2024-11-20', '2024-11-25', 350.00, 'LC Series', 'Lexus', 5, 200, 14.20, 'Total Fine: $0', NULL, '2024-11-06 16:07:50'),
-(7, 24, 1, '2024-11-25', '2024-12-01', 420.00, 'A6', 'Audi', 5, 240, 9.50, 'Total Fine: $0', NULL, '2024-11-06 18:27:14'),
-(8, 3, 1, '2024-10-10', '2024-10-15', 450.00, 'A6', 'Audi', 5, 240, 9.50, 'Total Fine: $0', NULL, '2024-11-06 18:27:40'),
 (9, 25, 4, '2024-10-31', '2024-11-01', 45.00, 'Corolla', 'Toyota', 5, 180, 15.50, 'Total Fine: $0', NULL, '2024-11-07 06:34:19'),
 (10, 34, 4, '2024-11-12', '2024-11-14', 143.00, 'Corolla', 'Toyota', 5, 180, 15.50, 'Total Fine: $50.00', NULL, '2024-11-09 15:51:20'),
 (11, 35, 4, '2024-11-23', '2024-11-24', 57.00, 'Corolla', 'Toyota', 5, 180, 15.50, 'Total Fine: $0', NULL, '2024-11-23 17:50:35'),
 (12, 27, 4, '2024-11-06', '2024-12-06', 2725.00, 'X5', 'BMW', 5, 250, 8.50, 'Total Fine: $0', NULL, '2024-11-23 17:53:36'),
 (13, 30, 4, '2024-11-07', '2024-11-15', 685.00, 'A6', 'Audi', 5, 240, 9.50, 'Total Fine: $0', NULL, '2024-11-23 17:54:29'),
 (14, 29, 4, '2024-11-06', '2024-11-06', 8.00, 'LC Series', 'Lexus', 5, 200, 14.20, 'Total Fine: $0', NULL, '2024-11-23 17:54:32'),
-(15, 22, 2, '2024-11-23', '2024-11-29', 450.00, 'X5', 'BMW', 5, 250, 8.50, 'Total Fine: $0', NULL, '2024-12-12 05:48:15'),
 (16, 36, 4, '2024-12-12', '2024-12-13', 125.00, 'X5', 'BMW', 5, 250, 8.50, 'Total Fine: $15.00', NULL, '2024-12-12 05:56:44');
 
 -- --------------------------------------------------------
@@ -334,6 +301,13 @@ CREATE TABLE `rental_options` (
   `option_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `rental_options`
+--
+
+INSERT INTO `rental_options` (`rental_id`, `option_id`) VALUES
+(37, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -356,11 +330,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `phone`, `nic_number`, `password`, `role`, `created_at`) VALUES
-(1, 'John Doe', 'johndoe@example.com', '123456789', 'NIC123456', 'password123', 'customer', '2024-10-28 12:20:03'),
-(2, 'Jane Smith', 'janesmith@example.com', '987654321', 'NIC987654', 'password123', 'customer', '2024-10-28 12:20:03'),
-(3, 'Alice Brown', 'alicebrown@example.com', '456123789', 'NIC456123', 'password123', 'admin', '2024-10-28 12:20:03'),
 (4, 'Shukry', 'abcd@gmail.com', '0786543033', '200123103816', '$2y$10$15gBgzX98KraU74niSLWjebJAidEbJc4n/DdlGcDZWZYCD/4BmuUq', 'customer', '2024-10-31 14:43:34'),
-(5, 'Hiruththikan', 'abc@gmail.com', '0756546038', '992233220V', '$2y$10$wFXQoU2CDt65JnPDwnee8.85jDxQl.usHruiJjivJ4cmwM/nI3nuS', 'admin', '2024-11-06 15:55:21'),
+(5, 'Hiruththikan', 'abc@gmail.com', '0756546038', '992233220V', '$2y$10$15gBgzX98KraU74niSLWjebJAidEbJc4n/DdlGcDZWZYCD/4BmuUq', 'admin', '2024-11-06 15:55:21'),
 (6, 'Kirupan', 'aaa@gmail.com', '0776565655', '20012233890', '$2y$10$kErSxJCro7rJvz6cAKvC/ey8qqlpZnKJm.nW8oZWqyERG.OUOwE1K', 'customer', '2024-11-06 18:34:32'),
 (7, 'hiruththikan', 'a.@gmail.com', '0754796021', '16667891730', '$2y$10$XmjHycTZ9P23nAWT/MR8jeAS2j7luk3WaPLlcJOXxHB1X3OVZZ6Pi', 'customer', '2024-11-07 06:30:15'),
 (8, 'Athiyya ', 'athiyya111@gmail.com', '0769978500', '200267102816', '$2y$10$eZWpQ7pO8I/rJ2x5NGUqc.ywEo48K07fAzvfE.EtYqh0hvRvmTHQ6', 'customer', '2025-09-07 13:15:22');
@@ -525,7 +496,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `rental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `rental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `rental_accessories`
